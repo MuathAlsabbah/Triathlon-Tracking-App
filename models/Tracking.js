@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const trackingSchema = mongoose.Schema(
+
     {
         duration: Number,
         distance:Number,
@@ -21,6 +22,11 @@ const trackingSchema = mongoose.Schema(
       timestamps: true //means createdAt and updatedAt
     }
 
-)
-module.exports = mongoose.model('Tracking',trackingSchema)
 
+    exercise: [exerciseSchema]
+  },
+  {
+    timestamps: true //means createdAt and updatedAt
+  }
+)
+module.exports = mongoose.model('Tracking', trackingSchema)

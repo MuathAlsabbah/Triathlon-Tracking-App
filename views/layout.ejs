@@ -16,9 +16,13 @@
     <% if(user) { %>
       <a href="/logout" class="btn btn-outline-primary">Logout</a>
       Hi <%= user.name %>
+
+      <a href="/exercise/add" class="btn btn-outline-primary">Add Exercise</a>
+
       <div class="userIcon">
         <a href="/user" class="btn btn-outline-primary">Profile</a>
       </div>
+
 
     <% } else { %>
       <a href="/auth/google" class="btn btn-outline-primary">Sign in</a>

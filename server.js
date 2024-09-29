@@ -22,7 +22,6 @@ app.use(express.static('public'))
 const db = require('./config/db')
 require('./config/passport')
 
-
 // Nodejs to look in a folder called views for all the ejs files
 app.set('view engine', 'ejs')
 
@@ -30,28 +29,32 @@ app.set('view engine', 'ejs')
 app.use(expressLayouts)
 
 // Passport and Session configurations
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true
-}));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true
+  })
+)
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Share the information with other pages
-app.use(function (req, res, next){
-  res.locals.user = req.user;
-  next();
-});
+app.use(function (req, res, next) {
+  res.locals.user = req.user
+  next()
+})
 
 // Import Routes
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
+const exerciseRouter = require('./routes/exercise')
 
 // Mount Routes
 app.use('/', indexRouter)
 app.use('/', authRouter)
+app.use('/exercise', exerciseRouter)
 
 // Listen for all HTTP Requests on PORT 4000
 app.listen(PORT, () => {
