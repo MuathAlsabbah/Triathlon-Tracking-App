@@ -11,8 +11,8 @@ const userSchema = mongoose.Schema(
         profile_picture: String,
         role:  String,
         event:[{            //poplute('event')
-         type: mongoose.Schema.Types.ObjectId,
-         ref :'Event' 
+        type: mongoose.Schema.Types.ObjectId,
+        ref :'Event' 
         }],
         googleId:{
             type:String,
@@ -25,5 +25,6 @@ const userSchema = mongoose.Schema(
     }
 
 )
-module.exports =mongoose.model('User',userSchema)
+const User = mongoose.model('User',userSchema);
+module.exports = {User,userSchema};
 

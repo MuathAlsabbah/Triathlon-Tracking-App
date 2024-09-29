@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const eventSchema = mongoose.Schema(
     {
         event_name: String,
-        event_date: date(),
+        event_date: Date,
         location: String,
         description: String,
         max_participants: Number,
@@ -17,5 +17,7 @@ const eventSchema = mongoose.Schema(
     }
 
 )
-module.exports = mongoose.model('Event',eventSchema)
+module.exports = mongoose.model('Event',eventSchema);
+
+
 

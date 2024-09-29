@@ -1,20 +1,19 @@
 const mongoose = require('mongoose');
+const {userSchema} = require('./User');
+const {exerciseSchema} = require('./Exercise');
 
 const trackingSchema = mongoose.Schema(
     {
         duration: Number,
         distance:Number,
         calories_burned:Number,
-        date: date(),
-        user:[{          
-         type: mongoose.Schema.Types.ObjectId,
-         ref :'User' 
-            }],
+        date:Date,
+        // user: [userSchema],
+        // exercise:[exerciseSchema],
+        user:{ type: mongoose.Schema.Types.ObjectId },
+        exercise:{ type: mongoose.Schema.Types.ObjectId },
 
-        exercise:[{           
-         type: mongoose.Schema.Types.ObjectId,
-         ref :'Exercise' 
-            }],
+    
 
     },
     {
@@ -22,5 +21,5 @@ const trackingSchema = mongoose.Schema(
     }
 
 )
-module.exports = mongoose.model('Tracking',trackingSchema)
+module.exports = mongoose.model('Tracking',trackingSchema);
 
