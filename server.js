@@ -2,6 +2,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const expressLayouts = require('express-ejs-layouts')
+const session = require('express-session')
+const passport = require('passport')
 
 // Require and Initialize dotenv
 require('dotenv').config()
@@ -18,6 +20,8 @@ app.use(express.static('public'))
 
 // Database Configuration
 const db = require('./config/db')
+require('./config/passport')
+
 
 // Nodejs to look in a folder called views for all the ejs files
 app.set('view engine', 'ejs')
