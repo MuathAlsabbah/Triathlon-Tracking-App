@@ -13,4 +13,3 @@ const exerciseSchema = mongoose.Schema(
   }
 )
 
-module.exports = mongoose.model('Exercise', exerciseSchema)

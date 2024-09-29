@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const eventSchema = mongoose.Schema(
     {
         event_name: String,
-        event_date: date(),
+        event_date: Date,
         location: String,
         description: String,
         max_participants: Number,
         user:[{            //poplute('user')
-        type: mongoose.Schema.Types.ObjectId,
-        ref :'User' 
+         type: mongoose.Schema.Types.ObjectId,
+         ref :'User' 
             }],
     },
     {
@@ -17,5 +17,7 @@ const eventSchema = mongoose.Schema(
     }
 
 )
-module.exports = mongoose.model('Event',eventSchema)
+module.exports = mongoose.model('Event',eventSchema);
+
+
 
