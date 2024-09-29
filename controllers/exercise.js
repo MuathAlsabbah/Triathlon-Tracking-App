@@ -1,41 +1,81 @@
+const dayjs = require('dayjs')
+var relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
+
 const Exercise = require('../models/Exercise')
 
-// Create a new exercise
-exports.createExercise = (req, res) => {
-  const { name, description, duration } = req.body
+exports.exercise_create_get = (req, res) => {
+  res.render('exercise/add')
+}
 
-  const newExercise = new Exercise({
-    name,
-    description,
-    duration,
-    admin: req.user.id
-  })
+exports.exercise_create_post = (req, res) => {
+  console.log(req.body)
+  let exercise = new Exercise(req.body)
 
-  newExercise
+  exercise
     .save()
-    .then(() => res.redirect('/exercises'))
-    .catch((error) => res.status(500).send('Server error'))
+    .then(() => {
+      res.redirect('/exercise/index')
+    })
+    .catch((err) => {
+      console.log(err)
+      res.send('Please try again later!!!')
+    })
 }
 
-// Get all exercises
-exports.getExercises = (req, res) => {
+exports.exercise_index_get = (req, res) => {
   Exercise.find()
-    .then((exercises) => res.render('admin/exercises', { exercises }))
-    .catch((error) => res.status(500).send('Server error'))
+    .then((exercise) => {
+      res.render('exercise/index', { exercise, dayjs })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
-// Update an exercise
-exports.updateExercise = (req, res) => {
-  const { name, description, duration } = req.body
-
-  Exercise.findByIdAndUpdate(req.params.id, { name, description, duration })
-    .then(() => res.redirect('/exercises'))
-    .catch((error) => res.status(500).send('Server error'))
+exports.exercise_show_get = (req, res) => {
+  console.log(req.query.id)
+  Exercise.findById(req.query.id)
+    .then((exercise) => {
+      res.render('exercise/detail', {
+        exercise,
+        dayjs
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
-// Delete an exercise
-exports.deleteExercise = (req, res) => {
-  Exercise.findByIdAndDelete(req.params.id)
-    .then(() => res.redirect('/exercises'))
-    .catch((error) => res.status(500).send('Server error'))
+exports.exercise_edit_get = (req, res) => {
+  console.log(req.query.id)
+  Exercise.findById(req.query.id)
+    .then((exercise) => {
+      res.render('exercise/edit', { exercise })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+exports.exercise_update_post = (req, res) => {
+  console.log(req.body.id)
+  Exercise.findByIdAndUpdate(req.body.id, req.body)
+    .then(() => {
+      res.redirect('/exercise/index')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+exports.exercise_delete_get = (req, res) => {
+  console.log(req.query.id)
+  Exercise.findByIdAndDelete(req.query.id)
+    .then(() => {
+      res.redirect('/exercise/index')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }

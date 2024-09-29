@@ -1,0 +1,31 @@
+<div>
+  <h2><%= exercise.name %></h2>
+  
+  <div>
+    Description: <%= exercise.description %>
+  </div>
+
+  <div>
+    Difficulty Level: <%= exercise.difficulty_level %>
+  </div>
+
+  <div>
+    Duration: <%= exercise.duration %>
+  </div>
+
+  <div>
+    Created At: <%= dayjs(ingredients.createdAt).fromNow(true) %>
+  </div>
+  
+  <div>
+    Updated At: <%= dayjs(ingredients.updatedAt).fromNow(true) %>
+  </div>
+  </div>
+  
+  <!-- <div>
+  <% ingredients.recipe.forEach(function(recipe){ %> <hr>
+  Recipe: <%= recipe.title %> <br>
+  Content: <%= recipe.content %> <br>
+  <% }) %>
+  </div>
+   -->
