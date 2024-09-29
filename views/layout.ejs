@@ -16,6 +16,9 @@
     <% if(user) { %>
       <a href="/logout" class="btn btn-outline-primary">Logout</a>
       Hi <%= user.name %>
+      <div class="profileIcon">
+        <a href="/profile" class="btn btn-outline-primary">Profile</a>
+      </div>
 
     <% } else { %>
       <a href="/auth/google" class="btn btn-outline-primary">Sign in</a>
