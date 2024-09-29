@@ -47,9 +47,11 @@ app.use(function (req, res, next){
 
 // Import Routes
 const indexRouter = require('./routes/index')
+const authRouter = require('./routes/auth')
 
 // Mount Routes
 app.use('/', indexRouter)
+app.use('/', authRouter)
 
 // Listen for all HTTP Requests on PORT 4000
 app.listen(PORT, () => {
