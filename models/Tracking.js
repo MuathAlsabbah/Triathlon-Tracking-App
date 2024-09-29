@@ -7,7 +7,7 @@ const trackingSchema = mongoose.Schema(
         calories_burned:Number,
         date: date(),
         user:[{          
-         type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
          ref :'User' 
             }],
 
