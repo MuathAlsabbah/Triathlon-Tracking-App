@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 const {userSchema} = require('./User');
 const {exerciseSchema} = require('./Exercise');
@@ -22,4 +23,3 @@ const trackingSchema = mongoose.Schema(
 
 )
 module.exports = mongoose.model('Tracking',trackingSchema);
-

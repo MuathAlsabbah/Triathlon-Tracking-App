@@ -1,0 +1,42 @@
+<h1>Profile</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Age</th>
+    <th>Gender</th>
+    <th>createdAt</th>
+    <th>updatedAt</th>
+    <th>Edit</th>
+    <th>Delete</th>
+
+  </tr>
+<% users.forEach(function(user){ %>
+<tr>
+  <td>
+    <a href="/user/detail?id=<%= user._id %>">
+    <%= user.name %>
+  </a>
+  </td>
+  <td><%= user.email %></td>
+  <td><%= user.username %></td>
+  <td><%= user.age %></td>
+  <!-- <td><%= user.author.name %></td> -->
+  <td><%= dayjs(user.createdAt).fromNow(true) %> ago </td>
+  <td><%= dayjs(user.updatedAt).fromNow(true) %> ago </td>
+  <td>
+    <a href="/user/edit?id=<%= user._id %>">
+      Edit
+    </a>
+  </td>
+  <td>
+    <a href="/user/delete?id=<%= user._id %>">
+      Delete
+    </a>
+  </td>
+</tr>
+<% }) %>
+
+</table>
