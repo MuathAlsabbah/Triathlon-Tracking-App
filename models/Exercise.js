@@ -12,5 +12,4 @@ const exerciseSchema = mongoose.Schema(
     timestamps: true //means createdAt and updatedAt
   }
 )
-
 module.exports = mongoose.model('Exercise', exerciseSchema)

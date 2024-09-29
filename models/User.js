@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema(
@@ -12,18 +13,18 @@ const userSchema = mongoose.Schema(
         role:  String,
         event:[{            //poplute('event')
         type: mongoose.Schema.Types.ObjectId,
-      ref :'Event' 
+        ref :'Event' 
         }],
         googleId:{
             type:String,
             required:true
         }
-  
+   
     },
     {
       timestamps: true //means createdAt and updatedAt
     }
 
 )
-module.exports =mongoose.model('User',userSchema)
-
+const User = mongoose.model('User',userSchema);
+module.exports = {User,userSchema};
