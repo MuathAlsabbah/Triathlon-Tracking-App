@@ -9,17 +9,21 @@ exports.exercise_create_get = (req, res) => {
 }
 
 exports.exercise_create_post = (req, res) => {
-  console.log(req.body)
-  let exercise = new Exercise(req.body)
+  const { name, description, difficulty_level, duration } = req.body
+  const exercise = new Exercise({
+    name,
+    description,
+    difficulty_level,
+    duration: Number(duration),
+    admin: req.user._id
+  })
 
   exercise
     .save()
-    .then(() => {
-      res.redirect('/exercise/index')
-    })
+    .then(() => res.redirect('/exercise/index'))
     .catch((err) => {
       console.log(err)
-      res.send('Please try again later!!!')
+      res.send('Error: Could not save exercise, please try again!')
     })
 }
 
