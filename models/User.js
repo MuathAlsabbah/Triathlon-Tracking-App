@@ -1,14 +1,17 @@
-
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema(
     {
         name: String,
         email: String,
-        username: String,
+        username: {String},
         password: String,
-        age: Number,
-        gender: String,
+        age:{
+            type: Number, default: null
+        },
+        gender:{
+            type: String, default: null
+        },
         profile_picture: String,
         role:  String,
         event:[{            //poplute('event')
@@ -19,7 +22,7 @@ const userSchema = mongoose.Schema(
             type:String,
             required:true
         }
-   
+
     },
     {
       timestamps: true //means createdAt and updatedAt

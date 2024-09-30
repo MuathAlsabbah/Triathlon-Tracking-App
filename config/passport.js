@@ -30,7 +30,6 @@ passport.use(
           name: profile.displayName,
           googleId: profile.id,
           email: profile.emails[0].value,
-          age: profile.ages.value
           // avatar: profile.photos[0].value
         })
         return cb(null, user)
@@ -65,7 +64,6 @@ passport.use(
           name: profile.displayName,
           googleId: profile.id,
           email: profile.emails[0].value,
-          age: profile.ages.value
           // avatar: profile.photos[0].value
         })
         return cb(null, user)
