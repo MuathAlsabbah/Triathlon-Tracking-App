@@ -1,7 +1,9 @@
 <h1 class="m-3"> Events</h1>
+
 <div class="container"></div>
     <div class="row">
         <% event.forEach(function(event) { %>
+        
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="/uploads/<%=event.image%>" alt="Event Image" class="card-img-top img-fluid" style="background-color: #eeeeee; height: 200px; object-fit: cover;">
@@ -12,19 +14,27 @@
                          <div class="d-flex justify-content-between mt-3"> 
                             <h6> Date: <%= new Date(event.event_date).toISOString().split('T')[0] %></h6>
                             <h6> Time: <%= event.time %>    </h6>
-                         </div>
+                        </div>
 
-                         <% if(event.isFull === false ){%>
+                        <% if(event.isFull === false ){%>
                             <div class="text-center mt-5">
-                                <a href="userJoinEvent?id=<%= event._id%>" class="btn btn-primary"> Join</a>
-                                <a href="event/detailEvent?id=<%= event._id%>" class="btn btn-secondary ms-2"> More infomation</a>           
+                                <!-- "user.event" get all Events_id in user collection  -->
+                                <% const isParticipating = user.event.includes(event._id.toString()); %>
+
+                                <% if (isParticipating) { %>
+                                    <a href="userUNJoinEvent?id=<%= event._id %>" class="btn btn-primary">UnJoin</a>
+                                <% } else { %>
+                                    <a href="userJoinEvent?id=<%= event._id %>" class="btn btn-primary">Join</a>
+                                <% } %>
+                            
+                                <a href="detailEvent?id=<%= event._id %>" class="btn btn-secondary ms-2">More Information</a> 
                             </div>
                             <% }
                             else { %>
                                 <div class="text-center mt-5">
                                     <h6 class="text-danger">Event is Full</h6>
-                                   <a href="event/addUser" class="btn btn-secondary ms-2"> More infomation</a>
-                                   
+                                <a href="event/addUser" class="btn btn-secondary ms-2"> More infomation</a>
+                                
                                 </div>
                                     
 

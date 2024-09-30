@@ -10,7 +10,7 @@ const eventSchema = mongoose.Schema(
     image: String,
     isFull:Boolean,
     max_participants: Number,
-    user:[{            //poplute('user')
+    user:[{            //.populate('user');
      type: mongoose.Schema.Types.ObjectId,
      ref :'User' 
         }],
