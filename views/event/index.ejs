@@ -1,0 +1,50 @@
+<h1>Events</h1>
+
+<table class="table table-striped font">
+
+  <tr>
+    <th>Event Title</th>
+    <th>Event Date</th>
+    <th>Event Time</th>
+
+    <th> location</th>
+    <th>Description</th>
+    <th>max_participants</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <% event.forEach(function(event){ %>
+    <tr>
+      <td>
+        <a href="/event/detail?id=<%=event._id %>">
+          <%= event.event_name %>
+        </a>
+      </td>
+      <td>
+        <%= new Date(event.event_date)        // Convert to Date object
+        .toISOString()                        // Convert to ISO string format (YYYY-MM-DDTHH:mm:ss.sssZ)
+        .split('T')[0]                        // Split at 'T' and take the date part (first element)
+    %>      </td>
+        <td><%= event.time %></td>
+      <td><%= event.location %></td>
+      <td><%= event.description%></td>
+      <td><%= event.max_participants%></td>
+
+      <td> <%= dayjs(event.createdAt).fromNow(true) %> ago</td>
+      <td> <%= dayjs(event.updatedAt).fromNow(true) %> ago</td>
+      <td>
+        <a href="/event/edit?id=<%= event._id %>">
+          Edit
+        </a>
+      </td>
+      <td>
+        <a href="/event/delete?id=<%= event._id %>">
+          Delete
+        </a>
+      </td>
+    </tr>
+  <% }) %>
+
+</table>

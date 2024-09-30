@@ -1,0 +1,70 @@
+<h1>Add Event</h1>
+<!-- enctype="multipart/form-data" TO <Enable add file type> -->
+<form action="/event/add" method="post" enctype="multipart/form-data"> 
+  <div>
+    <label>Event Title</label>
+    <input type="text" name="event_name" class="form-control" required>
+  </div>
+  <br>
+
+  <div>
+    <label>location</label>
+    <input type="text" name="location" class="form-control" required>
+  </div>
+  <br>
+
+  <div>
+    <label>Description</label>
+    <input type="text" name="description" class="form-control" required>
+  </div>
+  <br>
+<div class="row">
+  <div class="col">
+    <div>
+      <label>Max participants</label>
+      <input type="number" name="max_participants" class="form-control" required>
+    </div>
+  
+
+  </div>
+  <div class="col">
+    <div>
+      <label>Is Full</label>
+      <select name="isFull"  class="form-control">
+        <option value="false">false</option>
+        <option value="true">true</option>
+      </select>
+    </div>
+  
+  </div>
+</div>
+
+  <br>
+  <div>
+    <div class="row">
+      <div class="col">    
+        <label>Event Date</label>
+
+        <input type="date" name="event_date" class="form-control" required>
+      </div>
+      <div class="col">    
+        <label>Event Time</label>
+
+      <input type="text" name="time" class="form-control" placeholder="14:00 PM" required>
+      </div>
+      <div class="col">
+        <div>
+          <!-- accept="image/*" > make sure that file type is an image -->
+          <label>Event Image</label>
+          <input type="file" name="image" class="form-control"   accept="image/*" required> 
+        </div>
+      </div>
+      
+
+
+    </div>
+  </div>  <br>
+
+
+  <button type="submit" class="btn btn-primary">Create Event</button>
+</form>
