@@ -1,9 +1,44 @@
+<h1 class="m-3"> Events</h1>
+<div class="container"></div>
+    <div class="row">
+        <% event.forEach(function(event) { %>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="/uploads/<%=event.image%>" alt="Event Image" class="card-img-top img-fluid" style="background-color: #eeeeee; height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        
+                        <h5 class="card-title text-center mb-4"> <%= event.event_name %> </h5> 
+                        <h6> Event Location: <%= event.location %></h6>
+                         <div class="d-flex justify-content-between mt-3"> 
+                            <h6> Date: <%= new Date(event.event_date).toISOString().split('T')[0] %></h6>
+                            <h6> Time: <%= event.time %>    </h6>
+                         </div>
+
+                         <% if(event.isFull === false ){%>
+                            <div class="text-center mt-5">
+                                <a href="event/userJoinEvent?id=<%= event._id%>" class="btn btn-primary"> Join</a>
+                                <a href="event/detailEvent?id=<%= event._id%>" class="btn btn-secondary ms-2"> More infomation</a>           
+                            </div>
+                            <% }
+                            else { %>
+                                <div class="text-center mt-5">
+                                    <h6 class="text-danger">Event is Full</h6>
+                                   <a href="event/addUser" class="btn btn-secondary ms-2"> More infomation</a>
+                                   
+                                </div>
+                                    
 
 
 
+                            <% }%>
 
-<div class="row">
-    <div class="col"></div>
-    <div class="col"></div>
-    <div class="col"></div>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
 </div>
+
+
+
+

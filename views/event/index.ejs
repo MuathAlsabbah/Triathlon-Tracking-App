@@ -22,7 +22,7 @@
           <%= event.event_name %>
         </a>
       </td>
-      <td>
+      <td>   
         <%= new Date(event.event_date)        // Convert to Date object
         .toISOString()                        // Convert to ISO string format (YYYY-MM-DDTHH:mm:ss.sssZ)
         .split('T')[0]                        // Split at 'T' and take the date part (first element)
