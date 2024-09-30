@@ -20,34 +20,32 @@
                             <h6> Date: <%= new Date(event.event_date).toISOString().split('T')[0] %></h6>
                             <h6> Time: <%= event.time %>    </h6>
                         </div>
+                        <!-- "user.event" get all Events_id in user collection  -->
 
-                        <% if( TotalJoindUsers != event.max_participants ){%>
+                        <% const isParticipating = user.event.includes(event._id.toString()); %>
+
                             <div class="text-center mt-5">
-                                <!-- "user.event" get all Events_id in user collection  -->
-                                <% const isParticipating = user.event.includes(event._id.toString()); %>
+                                <% if (TotalJoindUsers != event.max_participants) { %>
+                                    <!-- If there is space for more participants -->
+                                    <% if (isParticipating) { %>  <!-- If user is orady join then it can do UnJoin  -->
+                                      <a href="userUNJoinEvent?id=<%= event._id %>" class="btn btn-primary">UnJoin</a>
+                                    <% } 
+                                    else { %> <!-- If it is not join then it can do Join  -->
+                                      <a href="userJoinEvent?id=<%= event._id %>" class="btn btn-primary">Join</a>
+                                    <% } %>
 
-                                <% if (isParticipating) { %>
-                                    <a href="userUNJoinEvent?id=<%= event._id %>" class="btn btn-primary">UnJoin</a>
-                                <% } else { %>
-                                    <a href="userJoinEvent?id=<%= event._id %>" class="btn btn-primary">Join</a>
-                                <% } %>
-                            
-                                <a href="detailEvent?id=<%= event._id %>" class="btn btn-secondary ms-2">More Information</a> 
-                            </div>
-                            <% }
-                            else { %>
-                                <div class="text-center mt-5">
-                                    <a href="userUNJoinEvent?id=<%= event._id %>" class="btn btn-primary">UnJoin</a>
-                                <a href="event/addUser" class="btn btn-secondary ms-2"> More infomation</a>
+                                    <% } 
+                                else { %>
+                                    <!-- If the event is full -->    
+                                        <% if (isParticipating) { %>
+                                        <a href="userUNJoinEvent?id=<%= event._id %>" class="btn btn-primary">UnJoin</a>
+                                        <% } %>
+                                  <% } %>
                                 
-                                </div>
-                                    
+                                <a href="event/detailEvent?id=<%= event._id %>" class="btn btn-secondary ms-2">More Information</a>
 
-
-
-                            <% }%>
-
-                    </div>
+                    </div>    
+                </div>
                 </div>
             </div>
         <% }) %>
