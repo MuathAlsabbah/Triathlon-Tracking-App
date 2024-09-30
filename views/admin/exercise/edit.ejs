@@ -1,23 +1,39 @@
-<h1>Edit Exercise </h1>
+<h1>Edit Exercise</h1>
 
-<form method="POST" action="/exercise/update">
+<form action="/admin/exercise/update" method="post">
+  <input type="hidden" name="id" value="<%= exercise._id %>">
+
   <div>
     <label>Name</label>
-    <input name="name" type="text" value="<%= exercise.name %>" />
+    <select name="name" class="form-control">
+      <option value="Swimming" <%= exercise.name === 'Swimming' ? 'selected' : '' %>>Swimming</option>
+      <option value="Running" <%= exercise.name === 'Running' ? 'selected' : '' %>>Running</option>
+      <option value="Biking" <%= exercise.name === 'Biking' ? 'selected' : '' %>>Biking</option>
+    </select>
   </div>
+  <br>
 
   <div>
     <label>Description</label>
-    <input name="description" type="text" value="<%= exercise.description %>" />
+    <input type="text" name="description" class="form-control" value="<%= exercise.description %>">
   </div>
+  <br>
 
   <div>
-    <label>Duration</label>
-    <input name="duration" type="text" value="<%= exercise.duration %>" />
+    <label>Difficulty Level</label>
+    <select name="difficulty_level" class="form-control">
+      <option value="Easy" <%= exercise.difficulty_level === 'Easy' ? 'selected' : '' %>>Easy</option>
+      <option value="Intermediate" <%= exercise.difficulty_level === 'Intermediate' ? 'selected' : '' %>>Intermediate</option>
+      <option value="Difficult" <%= exercise.difficulty_level === 'Difficult' ? 'selected' : '' %>>Difficult</option>
+    </select>
   </div>
+  <br>
 
-  <input type="hidden" name="id" value="<%= exercise._id %>" />
+  <div>
+    <label>Duration (minutes)</label>
+    <input type="number" name="duration" class="form-control" value="<%= exercise.duration %>">
+  </div>
+  <br>
 
-  <button type="submit">Update Exercise</button>
-
+  <button type="submit" class="btn btn-primary">Update Exercise</button>
 </form>

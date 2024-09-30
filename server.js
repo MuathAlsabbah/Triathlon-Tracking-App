@@ -25,6 +25,9 @@ require('./config/passport')
 // Nodejs to look in a folder called views for all the ejs files
 app.set('view engine', 'ejs')
 
+app.use(express.urlencoded({ extended: true })) // To parse form data
+app.use(express.json()) // To parse JSON data
+
 // Look in views folder for a file named layout.ejs
 app.use(expressLayouts)
 
@@ -42,6 +45,7 @@ app.use(passport.session())
 
 // Share the information with other pages
 app.use(function (req, res, next) {
+  console.log('req.user', req.user)
   res.locals.user = req.user
   next()
 })
@@ -50,11 +54,13 @@ app.use(function (req, res, next) {
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
 const exerciseRouter = require('./routes/exercise')
+const trainingPlansRouter = require('./routes/trainingPlans')
 
 // Mount Routes
 app.use('/', indexRouter)
 app.use('/', authRouter)
-app.use('/exercise', exerciseRouter)
+app.use('/admin/exercise', exerciseRouter)
+app.use('/admin/trainingPlans', trainingPlansRouter)
 
 // Listen for all HTTP Requests on PORT 4000
 app.listen(PORT, () => {

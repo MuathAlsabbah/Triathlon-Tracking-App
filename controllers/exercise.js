@@ -5,7 +5,7 @@ dayjs.extend(relativeTime)
 const Exercise = require('../models/Exercise')
 
 exports.exercise_create_get = (req, res) => {
-  res.render('exercise/add')
+  res.render('admin/exercise/add')
 }
 
 exports.exercise_create_post = (req, res) => {
@@ -20,7 +20,7 @@ exports.exercise_create_post = (req, res) => {
 
   exercise
     .save()
-    .then(() => res.redirect('/exercise/index'))
+    .then(() => res.redirect('/admin/exercise/index'))
     .catch((err) => {
       console.log(err)
       res.send('Error: Could not save exercise, please try again!')
@@ -30,7 +30,7 @@ exports.exercise_create_post = (req, res) => {
 exports.exercise_index_get = (req, res) => {
   Exercise.find()
     .then((exercise) => {
-      res.render('exercise/index', { exercise, dayjs })
+      res.render('admin/exercise/index', { exercise, dayjs })
     })
     .catch((err) => {
       console.log(err)
@@ -41,7 +41,7 @@ exports.exercise_show_get = (req, res) => {
   console.log(req.query.id)
   Exercise.findById(req.query.id)
     .then((exercise) => {
-      res.render('exercise/detail', {
+      res.render('admin/exercise/detail', {
         exercise,
         dayjs
       })
@@ -55,7 +55,7 @@ exports.exercise_edit_get = (req, res) => {
   console.log(req.query.id)
   Exercise.findById(req.query.id)
     .then((exercise) => {
-      res.render('exercise/edit', { exercise })
+      res.render('admin/exercise/edit', { exercise })
     })
     .catch((err) => {
       console.log(err)
@@ -66,7 +66,7 @@ exports.exercise_update_post = (req, res) => {
   console.log(req.body.id)
   Exercise.findByIdAndUpdate(req.body.id, req.body)
     .then(() => {
-      res.redirect('/exercise/index')
+      res.redirect('/admin/exercise/index')
     })
     .catch((err) => {
       console.log(err)
@@ -77,7 +77,7 @@ exports.exercise_delete_get = (req, res) => {
   console.log(req.query.id)
   Exercise.findByIdAndDelete(req.query.id)
     .then(() => {
-      res.redirect('/exercise/index')
+      res.redirect('/admin/exercise/index')
     })
     .catch((err) => {
       console.log(err)
