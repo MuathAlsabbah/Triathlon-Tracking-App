@@ -3,7 +3,7 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
 const Event = require('../models/Event')
-
+const { User } = require('../models/User')
 
 
 
@@ -67,6 +67,18 @@ exports.event_index_get = (req, res) => {
       console.log(err)
     })
 }
+
+exports.event_user_get = (req, res) => {
+    Event.find()
+      .then((event) => {
+        res.render('event/userShowEvent', { event, dayjs })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+
 
 exports.event_show_get = (req, res) => {
   console.log(req.query.id)
