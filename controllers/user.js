@@ -61,7 +61,7 @@ exports.user_create_post = (req, res) => {
 }
 
 exports.user_index_get = (req, res) => {
-  User.find().populate('author')
+  User.findById(req.user._id)
     .then((users) => {
       res.render('user/index', { users, dayjs })
     })
@@ -72,7 +72,7 @@ exports.user_index_get = (req, res) => {
 
 exports.user_show_get = (req, res) => {
   console.log(req.query.id)
-  User.findById(req.query.id).populate('author')
+  User.findById(req.query.id)
     .then((user) => {
       res.render('user/detail', { user, dayjs })
     })
