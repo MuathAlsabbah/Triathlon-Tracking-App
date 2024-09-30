@@ -22,5 +22,7 @@ router.get('/edit', ensureLoggedIn, eventCtrl.event_edit_get)
 router.post('/update', ensureLoggedIn, eventCtrl.event_update_post)
 
 router.get('/delete', ensureLoggedIn, eventCtrl.event_delete_get)
+router.get('/userJoinEvent', ensureLoggedIn, eventCtrl.event_join_get)
+
 
 module.exports = router
