@@ -8,7 +8,12 @@
                 <div class="card">
                     <img src="/uploads/<%=event.image%>" alt="Event Image" class="card-img-top img-fluid" style="background-color: #eeeeee; height: 200px; object-fit: cover;">
                     <div class="card-body">
-                        
+                        <% const TotalJoindUsers = event.user.length; %>
+
+                        <% if( TotalJoindUsers == event.max_participants ){%>
+                            <div> <h6 class="text-danger">Event is Full</h6></div>
+                        <% }%>
+        
                         <h5 class="card-title text-center mb-4"> <%= event.event_name %> </h5> 
                         <h6> Event Location: <%= event.location %></h6>
                          <div class="d-flex justify-content-between mt-3"> 
@@ -16,7 +21,7 @@
                             <h6> Time: <%= event.time %>    </h6>
                         </div>
 
-                        <% if(event.isFull === false ){%>
+                        <% if( TotalJoindUsers != event.max_participants ){%>
                             <div class="text-center mt-5">
                                 <!-- "user.event" get all Events_id in user collection  -->
                                 <% const isParticipating = user.event.includes(event._id.toString()); %>
@@ -32,7 +37,7 @@
                             <% }
                             else { %>
                                 <div class="text-center mt-5">
-                                    <h6 class="text-danger">Event is Full</h6>
+                                    <a href="userUNJoinEvent?id=<%= event._id %>" class="btn btn-primary">UnJoin</a>
                                 <a href="event/addUser" class="btn btn-secondary ms-2"> More infomation</a>
                                 
                                 </div>
