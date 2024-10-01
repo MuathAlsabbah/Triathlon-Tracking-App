@@ -1,8 +1,38 @@
 body {
-  margin: 20px;
+  margin: 30px;
   height: 100vh;
+  font-family: Protest Guerrilla;
 }
 
 h1 {
   text-align: center;
+}
+
+.noStyle {
+  color: rgb(238, 123, 0);
+}
+
+.noStyle:hover {
+  color: rgb(219, 109, 30);
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* This will push buttons to the sides */
+  align-items: center; /* Aligns buttons vertically in the center */
+}
+
+.left {
+  display: flex;
+  
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px; 
+}
+
+.welcome {
+
 }
