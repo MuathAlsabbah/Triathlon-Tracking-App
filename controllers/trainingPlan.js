@@ -81,36 +81,39 @@ exports.updateTrainingPlan = (req, res) => {
 
 // Admin: Show details of a training plan
 exports.getTrainingPlanDetail = (req, res) => {
-  TrainingPlan.findById(req.query.id)
-    .populate('exercises user admin')
-    .then((plan) => res.render('admin/trainingPlans/detail', { plan }))
-    .catch((err) => res.send(err))
-}
+  const planId = req.params.id // Use req.params.id to get the plan ID from the URL
 
+  TrainingPlan.findById(planId)
+    .populate('exercises user admin')
+    .then((plan) => {
+      if (!plan) {
+        return res.status(404).send('Plan not found')
+      }
+      res.render('admin/trainingPlans/detail', { plan })
+    })
+    .catch((err) => res.status(500).send('Error retrieving training plan'))
+}
 // Admin: Delete a training plan
 exports.deleteTrainingPlan = (req, res) => {
-  TrainingPlan.findByIdAndDelete(req.query.id)
+  const planId = req.params.id // Use req.params.id instead of req.query.id
+
+  TrainingPlan.findByIdAndDelete(planId)
     .then(() => res.redirect('/admin/trainingPlans'))
-    .catch((err) => res.send(err))
+    .catch((err) => res.status(500).send('Error deleting training plan'))
 }
 
 // Admin: Show details of a training plan
 exports.getUserTrainingPlans = (req, res) => {
-  console.log(req.user)
-
   if (!req.user) {
-    return res.send('User not logged in')
+    return res.redirect('/auth/google') // Redirect to login if not logged in
   }
 
   const userId = req.user._id
 
-  TrainingPlan.find({ user: userId }) // Find plans where the 'user' matches the logged-in user's ID
+  TrainingPlan.find({ user: userId })
     .populate('exercises')
     .then((plans) => {
       res.render('admin/trainingPlans/user-plans', { plans })
     })
-    .catch((err) => {
-      console.log(err)
-      res.send('Error retrieving training plans')
-    })
+    .catch((err) => res.status(500).send('Error retrieving training plans'))
 }

@@ -1,18 +1,15 @@
-<h1>Your Training Plans</h1>
-
 <table class="table table-striped font">
   <tr>
     <th>Plan Title</th>
     <th>Description</th>
     <th>Exercises</th>
-
   </tr>
   <% plans.forEach(function(plan) { %>
     <tr>
       <td>
-
+        <!-- <a href="/admin/plan/detail/<%= plan._id %>"> -->
           <%= plan.title %>
-
+        <!-- </a> -->
       </td>
       <td><%= plan.description %></td>
       <td>
@@ -25,7 +22,3 @@
     </tr>
   <% }) %>
 </table>
-
-<% if (plans.length === 0) { %>
-  <p>You have no training plans yet.</p>
-<% } %>
