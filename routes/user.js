@@ -19,5 +19,6 @@ router.get('/detail', userCtrl.user_show_get)
 router.get('/delete', ensuredLoggedIn, userCtrl.user_delete_get)
 router.get('/edit', ensuredLoggedIn, userCtrl.user_edit_get)
 router.post('/update', ensuredLoggedIn, userCtrl.user_update_post)
+router.get('/track', ensuredLoggedIn, userCtrl.user_Tracking_show_get)
 
 module.exports = router

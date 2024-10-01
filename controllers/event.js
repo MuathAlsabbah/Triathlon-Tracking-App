@@ -153,7 +153,7 @@ exports.event_join_get = async (req, res) => {
   }
 };
 
-// Users join event 
+// Users UNjoin event 
 exports.event_Unjoin_get = async (req, res) => {
   const eventId = req.query.id; // eventId
   const userId = req.user._id; // user id
@@ -177,3 +177,17 @@ exports.event_Unjoin_get = async (req, res) => {
     console.log(err);
   }
 };
+//
+exports.user_event_show_get = (req, res) => {
+  console.log(req.query.id)
+  Event.findById(req.query.id).populate('user')
+    .then((event) => {
+      res.render('event/eventDetail', {
+        event,
+        dayjs
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
