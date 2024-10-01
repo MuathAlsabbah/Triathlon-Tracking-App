@@ -12,7 +12,7 @@ dayjs.extend(relativeTime)
 
 const { User } = require('../models/User')
 const Tracking  = require('../models/Tracking')
-
+const TrainingPlan = require('../models/TrainingPlan')
 
 exports.user_create_get = (req, res) => {
   User.find()
@@ -115,17 +115,19 @@ exports.user_delete_get = (req, res) => {
       console.log(err)
     })
 }
+
 // tracking user
 exports.user_Tracking_show_get = (req, res) => {
-  const userId = req.user._id; // Assuming user ID is passed in the query
-
-  Tracking.find({ user: userId })
-    .populate('exercise') // Populate exercise details if needed
-    .then((trackingRecords) => {
-      // Pass the data to the view
-      res.render('user/track', { trackingRecords });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const userId = req.user._id; 
+  Promise.all([
+    TrainingPlan.find(), 
+    Tracking.find({ user: userId }).populate('exercise') 
+  ])
+  .then(([trainingPlan, tracking]) => {
+    res.render('user/track', { trainingPlan,tracking });
+  })
+  .catch(err => {
+    console.log(err)
+  });
 };
+
