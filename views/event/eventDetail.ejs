@@ -1,8 +1,7 @@
 <h1 class="m-3"> Events details</h1>
 
 <div class="container"></div>
-    <div class="row">
-        
+    <div class="row justify-content-center">
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <img src="/uploads/<%=event.image%>" alt="Event Image" class="card-img-top img-fluid" style="background-color: #eeeeee; height: 200px; object-fit: cover;">
@@ -13,14 +12,19 @@
                          <div class="d-flex justify-content-between mt-3"> 
                             <h6> Date: <%= new Date(event.event_date).toISOString().split('T')[0] %></h6>
                             <h6> Time: <%= event.time %>    </h6>
-                        </div>
+                        </div> <br>
+                        <h6> Max participants: <%= event.max_participants %>   </h6> <br> 
+                        <h6> Description: <%= event.description %>    </h6>
+
                         <!-- "user.event" get all Events_id in user collection  -->
                     </div>    
                 </div>
                 </div>
             </div>
-    </div>
+    </div> 
+
 </div>
+
 
 
 
