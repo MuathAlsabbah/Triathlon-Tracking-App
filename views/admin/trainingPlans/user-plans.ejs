@@ -1,0 +1,24 @@
+<table class="table table-striped font">
+  <tr>
+    <th>Plan Title</th>
+    <th>Description</th>
+    <th>Exercises</th>
+  </tr>
+  <% plans.forEach(function(plan) { %>
+    <tr>
+      <td>
+        <!-- <a href="/admin/plan/detail/<%= plan._id %>"> -->
+          <%= plan.title %>
+        <!-- </a> -->
+      </td>
+      <td><%= plan.description %></td>
+      <td>
+        <ul style="list-style-type: none; padding: 0;">
+          <% plan.exercises.forEach(function(exercise) { %>
+            <li><%= exercise.name %></li>
+          <% }) %>
+        </ul>
+      </td>
+    </tr>
+  <% }) %>
+</table>

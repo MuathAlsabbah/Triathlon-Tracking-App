@@ -14,7 +14,7 @@
   <% exercise.forEach(function(exercise){ %>
     <tr>
       <td>
-        <a href="/exercise/detail?id=<%=exercise._id %>">
+        <a href="/admin/exercise/detail?id=<%=exercise._id %>">
           <%= exercise.name %>
         </a>
       </td>
@@ -24,12 +24,12 @@
       <td> <%= dayjs(exercise.createdAt).fromNow(true) %> ago</td>
       <td> <%= dayjs(exercise.updatedAt).fromNow(true) %> ago</td>
       <td>
-        <a href="/exercise/edit?id=<%= exercise._id %>">
+        <a href="/admin/exercise/edit?id=<%= exercise._id %>">
           Edit
         </a>
       </td>
       <td>
-        <a href="/exercise/delete?id=<%= exercise._id %>">
+        <a href="/admin/exercise/delete?id=<%= exercise._id %>">
           Delete
         </a>
       </td>

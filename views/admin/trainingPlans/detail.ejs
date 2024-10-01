@@ -1,0 +1,15 @@
+<% if (plan) { %>
+  <h1><%= plan.title %></h1>
+  <p><%= plan.description %></p>
+  <p>Assigned to: <%= plan.user ? plan.user.name : 'No user assigned' %></p>
+
+  <h2>Exercises</h2>
+  <ul>
+    <% plan.exercises.forEach(exercise => { %>
+      <li><%= exercise.name %></li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No plan found</p>
+<% } %>
+
