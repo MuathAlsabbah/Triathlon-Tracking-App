@@ -5,7 +5,8 @@ const Exercise = require('../models/Exercise')
 // Admin: Show all training plans
 exports.getAllTrainingPlans = (req, res) => {
   TrainingPlan.find()
-    .populate('exercises user')
+    .populate('exercises')
+    .populate('user')
     .then((plans) => res.render('admin/trainingPlans/index', { plans }))
     .catch((err) => res.send(err))
 }
