@@ -1,0 +1,66 @@
+<h1>Edit Event </h1>
+<form action="/event/update" method="post">
+  <div>
+    <label>Event Title</label>
+    <input type="text" name="event_name" class="form-control" value="<%= event.event_name %>">
+  </div>
+  <br>
+
+  <div>
+    <label>location</label>
+    <input type="text" name="location" class="form-control" value="<%= event.location %>">
+  </div>
+  <br>
+
+  <div>
+    <label>Description</label>
+    <input type="text" name="description" class="form-control" value="<%= event.description %>">
+  </div>
+  <br>
+
+  <div>
+    <label>Max participants</label>
+    <input type="number" name="max_participants" class="form-control" value="<%= event.max_participants %>">
+  </div>
+
+    <br>
+  <div>
+    <label>Is Full</label>
+   <!-- <script>
+    alert('is Full= <%=event.isFull%>')
+   </script> -->
+
+    <select name="isFull" class="form-control">
+      <% if(event.isFull === true) { %>
+          <option value="false" >False</option>
+          <option value="true" selected>True</option>
+      <% }
+      else { %>
+          <option value="true" >True</option>
+          <option value="false" selected>False</option>
+      <% } %>
+  </select>
+
+</div>
+  <br>
+  <div>
+    <div class="row">
+      <div class="col">    
+        <label>Event Date</label>
+
+        <input type="date" name="event_date" class="form-control" 
+        value="<%= new Date(event.event_date).toISOString().split('T')[0] %>">
+      </div>
+      <div class="col">    
+        <label>Event Time</label>
+
+      <input type="text" name="time" class="form-control"  value="<%= event.time %>">
+      </div>
+      <input type="hidden" name="id" value="<%= event._id %>">
+
+    </div>
+  </div>  <br>
+
+
+  <button type="submit" class="btn btn-primary">Update Event</button>
+</form>

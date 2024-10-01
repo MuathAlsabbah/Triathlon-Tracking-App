@@ -1,0 +1,29 @@
+<h1> Delete Profile </h1>
+
+<form method="GET" action="/user/update">
+  <div>
+    <label>Username</label>
+    <input name="title" type="text" value="<%= user.title %>" />
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input name="content" type="text" value="<%= user.content %>" />
+  </div>
+
+  <div>
+    <label>Age</label>
+    <input name="isPublished" type="text" value="<%= user.isPublished %>" />
+  </div>
+
+  <div>
+    <label>Gender</label>
+    <input name="totalwords" type="text" value="<%= user.totalwords %>" />
+  </div>
+
+
+  <input type="hidden" name="id" value="<%= user._id %>" />
+
+  <button type="submit">Delete User</button>
+
+</form>

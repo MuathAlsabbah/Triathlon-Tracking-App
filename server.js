@@ -55,12 +55,23 @@ const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
 const exerciseRouter = require('./routes/exercise')
 const trainingPlansRouter = require('./routes/trainingPlans')
+const eventRouter = require('./routes/event')
+const userRouter = require('./routes/user')
+
+
+
 
 // Mount Routes
 app.use('/', indexRouter)
 app.use('/', authRouter)
+
 app.use('/admin/exercise', exerciseRouter)
 app.use('/admin/trainingPlans', trainingPlansRouter)
+
+app.use('/exercise', exerciseRouter)
+app.use('/event', eventRouter)
+app.use('/user', userRouter)
+
 
 // Listen for all HTTP Requests on PORT 4000
 app.listen(PORT, () => {

@@ -1,0 +1,68 @@
+<h1> Event Details</h1>
+<form action="/event/add" method="post">
+
+  <br>
+  <div class="row"></div>
+
+    <img src="/uploads/<%=event.image%>" alt="Event Image" class="img-fluid">
+
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div>
+        <label>Event Title</label>
+        <input type="text" name="event_name" class="form-control"  value="<%= event.event_name %>"disabled>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <label>location</label>
+        <input type="text" name="location" class="form-control" value="<%= event.location %>" disabled>
+      </div>
+    </div>
+
+  </div>
+
+<br>
+  <div class="row">
+    <div class="col">
+      <div>
+        <label>Description</label>
+        <input type="text" name="description" class="form-control" value="<%= event.description %>" disabled>
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <label>Max participants</label>
+        <input type="number" name="max_participants" class="form-control" value="<%= event.max_participants %>" disabled>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div>
+    <div class="row">
+      <div class="col">    
+        <label>Event Date</label>
+
+        <input type="date" name="event_date" class="form-control" value="<%=  new Date(event.event_date).toISOString().split('T')[0]%>" disabled>
+      </div>
+      <div class="col">    
+        <label>Event Time</label>
+
+      <input type="text" name="time" class="form-control" value="<%= event.time %>" disabled>
+      </div>
+      <div class="col">
+        <div>
+          <label>Is full</label>
+          <input type="text" name="isFull" class="form-control" value="<%= event.isFull %>" disabled>
+        </div>
+      
+      </div>
+
+    </div>
+  </div>  <br>
+
+
+</form>
