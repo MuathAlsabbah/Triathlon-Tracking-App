@@ -1,0 +1,16 @@
+<h1>Log Progress for <%= exercise.name %></h1>
+
+<form action="/admin/trainingPlans/log-progress/<%= exercise._id %>" method="POST">
+
+  <label>Notes:</label>
+  <textarea name="notes" placeholder="Any additional notes"></textarea>
+
+  <label>Duration (minutes):</label>
+  <input type="number" name="duration" min="0" required>
+
+  <label>Calories Burned:</label>
+  <input type="number" name="calories_burned" min="0" required>
+
+  <button type="submit" class="btn btn-primary">Submit Progress</button>
+</form>
+
