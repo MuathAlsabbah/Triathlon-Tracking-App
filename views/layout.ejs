@@ -15,26 +15,34 @@
   </a>
   <nav>
     <% if(user && user.role === 'user') { %>
-      <div class="left"><a href="/logout" class="btn btn-outline-primary">Logout</a></div>
+        </div>
+        <div class="div">
+      <div class="d-flex justify-content-between">
+  <div class="div">
+    <a href="/logout" class="btn btn-outline-primary">Logout</a></div>
       <div class="right"><a href="/admin/trainingPlans/user-plans" class="btn btn-outline-primary" id="trainPlan">My Training Plans</a>
         <a href="/event/userShowEvent" class="btn btn-outline-primary" id="seasonal"> Seasonal Events</a>
-        <a href="/user/index?id=<%=user._id %>" class="btn btn-outline-primary" id="profile">Profile</a></div>
+  </div>
+  <div class="div">
+    <a href="/user" class="btn btn-outline-primary" id="profile">Profile</a>
+  </div>
+        </div>
+        
       
 
 
     <% } else if(user && user.role === 'admin') { %>
 
-      <a href="/admin/exercise/index" class="btn btn-outline-primary">Exercises</a>
+      <div class="display"><a href="/logout" class="btn btn-outline-primary">Logout</a>
+      <a href="/admin/exercise/index" class="btn 
+      btn-outline-primary">Exercises</a>
       <a href="/admin/exercise/add" class="btn btn-outline-primary">Add Exercise</a>
       <a href="/admin/trainingPlans" class="btn btn-outline-primary">Training Plans</a>
       <a href="/admin/trainingPlans/add" class="btn btn-outline-primary">Add Training Plan</a>
       <a href="/event/add" class="btn btn-outline-primary">Add Event</a>
       <a href="/event/index" class="btn btn-outline-primary"> Events</a>
-      <a href="/logout" class="btn btn-outline-primary">Logout</a>
-      Hi <%= user.name %>
-      <div class="userIcon">
-        <a href="/user" class="btn btn-outline-primary">Profile</a>
-      </div>
+      <a href="/user" class="btn btn-outline-primary" id="profile">Profile</a></div>
+      
     <%  } else { %>
       <a href="/auth/google" class="btn btn-outline-primary">Sign in</a>
       <% } %>
