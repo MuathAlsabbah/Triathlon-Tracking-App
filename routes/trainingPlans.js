@@ -35,4 +35,28 @@ router.get(
   trainingPlanController.getUserTrainingPlans
 )
 
+// Route to show progress logging page for a specific exercise
+router.get(
+  '/log-progress/:exerciseId',
+  trainingPlanController.showLogProgressForm
+)
+
+// Route to handle form submission and save progress
+router.post('/log-progress/:exerciseId', trainingPlanController.logProgress)
+
+// Route to show edit progress form for a specific progress log
+router.get(
+  '/edit-progress/:progressId',
+  trainingPlanController.showEditProgressForm
+)
+
+// Route to handle form submission for editing progress
+router.post('/edit-progress/:progressId', trainingPlanController.editProgress)
+
+// Route to delete a progress log
+router.post(
+  '/delete-progress/:progressId',
+  trainingPlanController.deleteProgress
+)
+
 module.exports = router

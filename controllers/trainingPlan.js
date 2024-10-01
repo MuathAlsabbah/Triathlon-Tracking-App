@@ -1,6 +1,7 @@
 const TrainingPlan = require('../models/TrainingPlan')
 const { User } = require('../models/User')
 const Exercise = require('../models/Exercise')
+const Tracking = require('../models/Tracking')
 
 // Admin: Show all training plans
 exports.getAllTrainingPlans = (req, res) => {
@@ -82,18 +83,26 @@ exports.updateTrainingPlan = (req, res) => {
 
 // Admin: Show details of a training plan
 exports.getTrainingPlanDetail = (req, res) => {
-  const planId = req.params.id // Use req.params.id to get the plan ID from the URL
+  const planId = req.params.id
 
   TrainingPlan.findById(planId)
-    .populate('exercises user admin')
+    .populate('exercises user')
     .then((plan) => {
       if (!plan) {
         return res.status(404).send('Plan not found')
       }
-      res.render('admin/trainingPlans/detail', { plan })
+
+      // Fetch the progress logs for this user and plan
+      Tracking.find({ user: plan.user._id, trainingPlan: plan._id })
+        .populate('exercise')
+        .then((progressLogs) => {
+          res.render('admin/trainingPlans/detail', { plan, progressLogs })
+        })
+        .catch((err) => res.status(500).send('Error retrieving progress logs'))
     })
     .catch((err) => res.status(500).send('Error retrieving training plan'))
 }
+
 // Admin: Delete a training plan
 exports.deleteTrainingPlan = (req, res) => {
   const planId = req.params.id // Use req.params.id instead of req.query.id
@@ -114,7 +123,123 @@ exports.getUserTrainingPlans = (req, res) => {
   TrainingPlan.find({ user: userId })
     .populate('exercises')
     .then((plans) => {
-      res.render('admin/trainingPlans/user-plans', { plans })
+      // For each exercise, populate the progress logs
+      Tracking.find({ user: userId }).then((progressLogs) => {
+        // Pass the progress logs along with the plans
+        res.render('admin/trainingPlans/user-plans', { plans, progressLogs })
+      })
     })
     .catch((err) => res.status(500).send('Error retrieving training plans'))
+}
+
+// Controller to show the log progress form
+exports.showLogProgressForm = (req, res) => {
+  const { exerciseId } = req.params
+
+  // Find the exercise by ID
+  Exercise.findById(exerciseId)
+    .then((exercise) => {
+      if (!exercise) {
+        return res.status(404).send('Exercise not found')
+      }
+      res.render('admin/trainingPlans/log-progress', { exercise }) // Render the form with the exercise data
+    })
+    .catch((err) => {
+      console.error('Error fetching exercise:', err)
+      res.status(500).send('Error fetching exercise')
+    })
+}
+
+// Controller to handle logging progress
+exports.logProgress = (req, res) => {
+  const { exerciseId } = req.params
+  const { notes, duration, calories_burned } = req.body
+  const userId = req.user._id
+
+  console.log('Exercise ID:', exerciseId)
+  console.log('User ID:', userId)
+  console.log('Form Data:', req.body)
+
+  // Find the training plan that contains this exercise
+  TrainingPlan.findOne({ exercises: exerciseId })
+    .then((plan) => {
+      if (!plan) {
+        return res.status(404).send('Training Plan not found.')
+      }
+
+      // Create a new progress log
+      const newTracking = new Tracking({
+        user: userId,
+        exercise: exerciseId,
+        trainingPlan: plan._id,
+        status: 'completed', // Use the correct enum value
+        notes,
+        duration,
+        calories_burned
+      })
+
+      return newTracking.save()
+    })
+    .then(() => {
+      res.redirect('/admin/trainingPlans/user-plans') // Redirect to the user's training plans
+    })
+    .catch((err) => {
+      console.error('Error logging progress:', err)
+      res.status(500).send('Error logging progress.')
+    })
+}
+
+// Show edit progress form
+exports.showEditProgressForm = (req, res) => {
+  const { progressId } = req.params
+
+  Tracking.findById(progressId)
+    .populate('exercise') // Populate the exercise data
+    .then((progress) => {
+      if (!progress) {
+        return res.status(404).send('Progress log not found')
+      }
+      res.render('admin/trainingPlans/edit-progress', {
+        progress,
+        exercise: progress.exercise
+      })
+    })
+    .catch((err) => {
+      console.error('Error fetching progress log:', err)
+      res.status(500).send('Error fetching progress log.')
+    })
+}
+
+// Handle edit progress form submission
+exports.editProgress = (req, res) => {
+  const { progressId } = req.params
+  const { notes, duration, calories_burned } = req.body
+
+  Tracking.findByIdAndUpdate(progressId, {
+    status: 'complete',
+    notes,
+    duration,
+    calories_burned
+  })
+    .then(() => {
+      res.redirect('/admin/trainingPlans/user-plans')
+    })
+    .catch((err) => {
+      console.error('Error updating progress log:', err)
+      res.status(500).send('Error updating progress log.')
+    })
+}
+
+// Handle deleting a progress log
+exports.deleteProgress = (req, res) => {
+  const { progressId } = req.params
+
+  Tracking.findByIdAndDelete(progressId)
+    .then(() => {
+      res.redirect('/admin/trainingPlans/user-plans')
+    })
+    .catch((err) => {
+      console.error('Error deleting progress log:', err)
+      res.status(500).send('Error deleting progress log.')
+    })
 }

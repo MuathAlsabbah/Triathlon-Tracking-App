@@ -4,18 +4,45 @@
     <th>Description</th>
     <th>Exercises</th>
   </tr>
+
   <% plans.forEach(function(plan) { %>
     <tr>
-      <td>
-        <!-- <a href="/admin/plan/detail/<%= plan._id %>"> -->
-          <%= plan.title %>
-        <!-- </a> -->
-      </td>
+      <td><%= plan.title %></td>
       <td><%= plan.description %></td>
       <td>
         <ul style="list-style-type: none; padding: 0;">
           <% plan.exercises.forEach(function(exercise) { %>
-            <li><%= exercise.name %></li>
+            <li>
+              <%= exercise.name %>
+
+              <!-- Show progress for this exercise -->
+              <p><strong>Progress:</strong></p>
+              <% const exerciseProgress = progressLogs.find(log => log.exercise.toString() === exercise._id.toString()); %>
+              <% if (exerciseProgress) { %>
+                <p>Status: <%= exerciseProgress.status %></p>
+                <p>Notes: <%= exerciseProgress.notes %></p>
+                <p>Duration: <%= exerciseProgress.duration %> minutes</p>
+                <p>Calories Burned: <%= exerciseProgress.calories_burned %> kcal</p>
+
+                <!-- Edit Progress Button -->
+                <form action="/admin/trainingPlans/edit-progress/<%= exerciseProgress._id %>" method="GET" style="display:inline;">
+                  <button type="submit" class="btn btn-warning">Edit</button>
+                </form>
+
+                <!-- Delete Progress Button -->
+                <form action="/admin/trainingPlans/delete-progress/<%= exerciseProgress._id %>" method="POST" style="display:inline;">
+                  <button type="submit" class="btn btn-danger" >Delete</button>
+                </form>
+
+              <% } else { %>
+                <p>No progress logged yet.</p>
+                <!-- Log Progress Button (only shown if no progress exists) -->
+                <form action="/admin/trainingPlans/log-progress/<%= exercise._id %>" method="GET" style="display:inline;">
+                  <button type="submit" class="btn btn-primary">Log Progress</button>
+                </form>
+              <% } %>
+
+            </li>
           <% }) %>
         </ul>
       </td>
