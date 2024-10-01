@@ -82,7 +82,7 @@ exports.event_user_get = (req, res) => {
 
 exports.event_show_get = (req, res) => {
   console.log(req.query.id)
-  Event.findById(req.query.id)
+  Event.findById(req.query.id).populate('user')
     .then((event) => {
         console.log("image event", event.image); // Log the image value here
       res.render('event/detail', {
