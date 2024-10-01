@@ -1,0 +1,23 @@
+<h1>Edit Training Plan</h1>
+<form action="/admin/trainingPlans/edit/<%= plan._id %>" method="POST">
+  <label>Title</label>
+  <input type="text" name="title" value="<%= plan.title %>" required>
+
+  <label>Description</label>
+  <textarea name="description" required><%= plan.description %></textarea>
+
+  <label>Assign to User</label>
+  <select name="userId" required>
+    <% users.forEach(user => { %>
+      <option value="<%= user._id %>" <%= user._id.equals(plan.user._id) ? 'selected' : '' %>><%= user.name %></option>
+    <% }) %>
+  </select>
+
+  <label>Exercises</label>
+  <% exercises.forEach(exercise => { %>
+    <input type="checkbox" name="exercises" value="<%= exercise._id %>" <%= plan.exercises.some(e => e._id.equals(exercise._id)) ? 'checked' : '' %>> <%= exercise.name %><br>
+  <% }) %>
+
+
+  <button type="submit">Update</button>
+</form>

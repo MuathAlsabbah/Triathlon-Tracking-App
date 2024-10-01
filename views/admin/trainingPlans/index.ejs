@@ -1,0 +1,14 @@
+<h1>All Training Plans</h1>
+<a href="/admin/trainingPlans/add">Add New Plan</a>
+<ul>
+  <% plans.forEach(plan => { %>
+    <li>
+      <strong><%= plan.title %></strong> - <%= plan.user.name %>
+      <a href="/admin/trainingPlans/detail/<%= plan._id %>">View Details</a>
+      <a href="/admin/trainingPlans/edit/<%= plan._id %>">Edit</a>
+      <form action="/admin/trainingPlans/delete/<%= plan._id %>" method="POST" style="display:inline;">
+        <button type="submit">Delete</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>

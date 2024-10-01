@@ -13,22 +13,35 @@
     <h1>Triathlon-Tracking App</h1>
   </a>
   <nav>
-    <% if(user) { %>
+    <% if(user && user.role === 'user') { %>
       <a href="/logout" class="btn btn-outline-primary">Logout</a>
       Hi <%= user.name %>
+      <a href="/admin/trainingPlans/user-plans" class="btn btn-outline-primary">My Training Plans</a>
 
       <a href="/exercise/add" class="btn btn-outline-primary">Add Exercise</a>
       <a href="/event/add" class="btn btn-outline-primary">Add Event</a>
       <a href="/event/index" class="btn btn-outline-primary"> Events</a>
+
 
       <div class="userIcon">
         <a href="/user/index?id=<%=user._id %>" class="btn btn-outline-primary">Profile</a>
       </div>
 
 
-    <% } else { %>
+    <% } else if(user && user.role === 'admin') { %>
+
+      <a href="/admin/exercise/index" class="btn btn-outline-primary">Exercises</a>
+      <a href="/admin/exercise/add" class="btn btn-outline-primary">Add Exercise</a>
+      <a href="/admin/trainingPlans" class="btn btn-outline-primary">Training Plans</a>
+      <a href="/admin/trainingPlans/add" class="btn btn-outline-primary">Add Training Plan</a>
+      <a href="/logout" class="btn btn-outline-primary">Logout</a>
+      Hi <%= user.name %>
+      <div class="userIcon">
+        <a href="/user" class="btn btn-outline-primary">Profile</a>
+      </div>
+    <%  } else { %>
       <a href="/auth/google" class="btn btn-outline-primary">Sign in</a>
-    <%  } %>
+      <% } %>
   </nav>
 
   <hr>

@@ -1,0 +1,22 @@
+<h1>Add a New Training Plan</h1>
+<form action="/admin/trainingPlans" method="POST">
+  <label>Title</label>
+  <input type="text" name="title" required>
+
+  <label>Description</label>
+  <textarea name="description" required></textarea>
+
+  <label>Assign to User</label>
+  <select name="userId" required>
+    <% users.forEach(user => { %>
+      <option value="<%= user._id %>"><%= user.name %></option>
+    <% }) %>
+  </select>
+
+  <label>Exercises</label>
+  <% exercises.forEach(exercise => { %>
+    <input type="checkbox" name="exercises" value="<%= exercise._id %>"> <%= exercise.name %><br>
+  <% }) %>
+
+  <button type="submit">Create</button>
+</form>
