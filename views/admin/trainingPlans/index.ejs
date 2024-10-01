@@ -1,5 +1,14 @@
 <h1>All Training Plans</h1>
-<a href="/admin/trainingPlans/add">Add New Plan</a>
+<form method="GET" action="/admin/trainingPlans" class="form-inline mb-4">
+  <label class="mr-2">Filter by User:</label>
+  <select name="userId" id="userFilter" class="form-control mr-2">
+    <option value="all" <%= selectedUser === 'all' ? 'selected' : '' %>>All Users</option>
+    <% users.forEach(user => { %>
+      <option value="<%= user._id %>" <%= selectedUser === user._id.toString() ? 'selected' : '' %>><%= user.name %></option>
+    <% }) %>
+  </select>
+  <button type="submit" class="btn btn-primary">Filter</button>
+</form>
 <ul>
   <% plans.forEach(plan => { %>
     <li>
