@@ -11,6 +11,8 @@ dayjs.extend(relativeTime)
 //Delete - HTTP Delete
 
 const { User } = require('../models/User')
+const Tracking  = require('../models/Tracking')
+
 
 exports.user_create_get = (req, res) => {
   User.find()
@@ -113,3 +115,17 @@ exports.user_delete_get = (req, res) => {
       console.log(err)
     })
 }
+// tracking user
+exports.user_Tracking_show_get = (req, res) => {
+  const userId = req.user._id; // Assuming user ID is passed in the query
+
+  Tracking.find({ user: userId })
+    .populate('exercise') // Populate exercise details if needed
+    .then((trackingRecords) => {
+      // Pass the data to the view
+      res.render('user/track', { trackingRecords });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
