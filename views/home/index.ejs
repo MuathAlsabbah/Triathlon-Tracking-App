@@ -1,1 +1,5 @@
-<h1>Welcome <%=user.name %> To Our Triathlon Tracking App</h1>
+<% if(user && user.role === 'user') { %>
+  <h1>Welcome <%= user.name %> To Our Triathlon Tracking App</h1>
+<% } else { %> 
+  <h1>Sign in and embark on a cool journey</h1> 
+<% } %>
