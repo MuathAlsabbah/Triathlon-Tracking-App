@@ -1,10 +1,9 @@
 <h1> Event Details</h1>
-<form action="/event/add" method="post">
 
   <br>
-  <div class="row"></div>
-
-    <img src="/uploads/<%=event.image%>" alt="Event Image" class="img-fluid">
+  <div class="row d-flex justify-content-center">
+    
+    <img src="/uploads/<%=event.image%>" alt="Event Image" class="img-fluid  mb-3 " style=" width: 400px; height: 200px; object-fit: cover;" >
 
   </div>
 
@@ -54,9 +53,18 @@
       <input type="text" name="time" class="form-control" value="<%= event.time %>" disabled>
       </div>
       <div class="col">
+        <% const TotalJoindUsers = event.user.length; %>
+        <% let full = false; %>
+        <% const max_participants = event.max_participants; %>
+
+
+        <% if( TotalJoindUsers === max_participants  ){%>
+          <%  full = true; %>
+        <% }%>
+        
         <div>
           <label>Is full</label>
-          <input type="text" name="isFull" class="form-control" value="<%= event.isFull %>" disabled>
+          <input type="text" name="isFull" class="form-control" value="<%= full %>" disabled>
         </div>
       
       </div>
@@ -65,4 +73,32 @@
   </div>  <br>
 
 
-</form>
+
+<table class="table table-striped font mt-4">
+  <tr>
+    <h1>
+      <th colspan="5" class="text-center"> Participants users</th>
+
+    </h1>
+  </tr>
+  <tr>
+    <th>#</th>
+    <th> Name</th>
+    <th> Email</th>
+    <th> Gender</th>
+    <th> Age</th>
+
+  </tr>
+
+  <% event.user.forEach(function(user ,i){ %>
+    <tr>
+      <td>  <%= i +1 %></td>
+    <td>  <%=  user.name  %></td>
+    <td>  <%=  user.email  %></td>
+    <td>  <%=  user.gender  %></td>
+    <td>  <%=  user.Age  %></td>
+
+  </tr>
+
+  <% }) %>
+</table>

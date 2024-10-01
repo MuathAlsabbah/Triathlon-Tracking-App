@@ -3,7 +3,7 @@ var relativeTime = require('dayjs/plugin/relativeTime')
 dayjs.extend(relativeTime)
 
 const Event = require('../models/Event')
-
+const { User } = require('../models/User')
 
 
 
@@ -68,9 +68,21 @@ exports.event_index_get = (req, res) => {
     })
 }
 
+exports.event_user_get = (req, res) => {
+    Event.find().populate('user') 
+      .then((event) => {
+        res.render('event/userShowEvent', { event, dayjs })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+
+
 exports.event_show_get = (req, res) => {
   console.log(req.query.id)
-  Event.findById(req.query.id)
+  Event.findById(req.query.id).populate('user')
     .then((event) => {
         console.log("image event", event.image); // Log the image value here
       res.render('event/detail', {
@@ -116,3 +128,52 @@ exports.event_delete_get = (req, res) => {
       console.log(err)
     })
 }
+// Users join event 
+exports.event_join_get = async (req, res) => {
+  const eventId = req.query.id; // eventId
+  const userId = req.user._id; // user id
+
+  try {
+    // Find the event by ID
+    const event = await Event.findById(eventId);
+
+    // Add the user to the event's participants
+    event.user.push(userId);
+    await event.save();
+
+    // Find the user and add the event to the user's events
+    const user = await User.findById(userId);
+    user.event.push(eventId);
+    await user.save();
+
+    // Redirect after successful join
+    res.redirect('/event/userShowEvent');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// Users join event 
+exports.event_Unjoin_get = async (req, res) => {
+  const eventId = req.query.id; // eventId
+  const userId = req.user._id; // user id
+
+  try {
+    // Find the event by ID
+    const event = await Event.findById(eventId);
+
+    // Add the user to the event's participants  > pull to remove 
+    event.user.pull(userId);
+    await event.save();
+
+    // Find the user and add the event to the user's events
+    const user = await User.findById(userId);
+    user.event.pull(eventId);
+    await user.save();
+
+    // Redirect after successful join
+    res.redirect('/event/userShowEvent');
+  } catch (err) {
+    console.log(err);
+  }
+};
