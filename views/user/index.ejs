@@ -1,4 +1,4 @@
-<h1>Profile</h1>
+<h1>View Profile</h1>
 
 <table class="table table-striped">
   <thead>
@@ -10,13 +10,14 @@
       <th>Created At</th>
       <th>Updated At</th>
       <th>Edit</th>
+      <th>Delete</th>
+
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <a href="/user?id=<%= user._id %>">
-          <%= user.name %> <!-- Assuming you want to display username here -->
+          <%= user.username %> <!-- Assuming you want to display username here -->
         </a>
       </td>
       <td><%= user.email %></td>
