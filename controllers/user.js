@@ -120,9 +120,10 @@ exports.user_update_post = (req, res) => {
       console.log("File upload error:", err);
       return res.send('Error uploading file');
     }
-
-    // Add the image path to req.body
-    req.body.profile_picture = req.file ? req.file.filename : null;
+    if (req.file) {
+          // Add the image path to req.body
+      req.body.profile_picture = req.file.filename;
+    }
 
   console.log(req.body.id)
   User.findByIdAndUpdate(req.body.id, req.body)
