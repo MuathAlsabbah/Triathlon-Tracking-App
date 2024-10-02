@@ -35,7 +35,8 @@ h1 {
 }
 
 .banner {
-  background-color: red;
+  background-image: url('../banner/Screenshot\ 2024-10-02\ at\ 11.23.25\ AM.png');
+  background-size: cover;
   display: flex;
   justify-content: center;
   width: calc(100% - 60px);
