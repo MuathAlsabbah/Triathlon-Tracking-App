@@ -12,11 +12,21 @@ Project 2 for General Assembly bootcamp, Develop a full-stack web application th
 
 ---
 
+### **_ERD_**
+
+<img src="pic/erd.png" alt="ERD">
+
+---
+
 ### **_Wireframe_**
 
-##### wireframe
-
- <img src="wireframe.png" alt="wireframe">
+<img src="pic/mainPage.png" alt="mainPage">
+<img src="pic/profile.png" alt="profile">
+<img src="pic/addExercise.png" alt="addExercise">
+<img src="pic/displayExercise.png" alt="displayExercise">
+<img src="pic/addEvent.png" alt="addEvent">
+<img src="pic/displayEvent.png" alt="displayEvent">
+<img src="pic/trainingPlan.png" alt="trainingPlan">
 
 ---
 
@@ -27,6 +37,8 @@ Project 2 for General Assembly bootcamp, Develop a full-stack web application th
 - Css
 - Mongoose
 - ExpressJs
+- EJS
+- Javascript
 
 ---
 
@@ -34,26 +46,11 @@ Project 2 for General Assembly bootcamp, Develop a full-stack web application th
 
 ### **_Screenshots_**
 
-##### Main Page
-
- <img src="mainpage.png" alt="main page">
-
-##### Guidlines Page
-
- <img src="guidelines.png" alt="guidlines page">
-
-##### GameOver Modal
-
- <img src="gameover.png" alt="gameover page">
-
-##### TimeOver Modal
-
- <img src="timeover.png" alt="timeover page">
-
 ---
 
 ### **_Future Updates_**
 
-- [ ]
+- [ ] Daily Training Reminders
+- [ ] Display Upcoming Events
 
 ---
