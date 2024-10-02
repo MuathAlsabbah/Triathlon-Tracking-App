@@ -11,14 +11,12 @@
       <th>Updated At</th>
       <th>Edit</th>
       <th>Delete</th>
-
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-          <%= user.username %> <!-- Assuming you want to display username here -->
-        </a>
+        <%= user.username %> <!-- Display username -->
       </td>
       <td><%= user.email %></td>
       <td><%= user.age %></td>
@@ -38,3 +36,23 @@
     </tr>
   </tbody>
 </table>
+
+<!-- Display current profile picture if available -->
+<h3>Current Profile Picture</h3>
+<% if (user.profile_picture) { %>
+  <img src="<%= user.profile_picture %>" alt="Profile Picture" width="150" height="150">
+<% } else { %>
+  <p>No profile picture available.</p>
+<% } %>
+
+<!-- Upload new profile picture -->
+<h3>Upload a New Profile Picture</h3>
+<form action="/user/index" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="profile_picture">Choose a profile picture:</label>
+    <input type="file" name="profile_picture" class="form-control" accept="image/*" required>
+  </br>
+  
+  </div>
+  <button type="submit" class="btn btn-primary">Upload</button>
+</form>
