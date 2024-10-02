@@ -15,6 +15,8 @@
   </a>
   <nav>
     <% if(user && user.role === 'user') { %>
+
+
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
           <!-- Left-aligned Logout Button -->
@@ -26,6 +28,7 @@
           <div class="d-flex justify-content-center">
             <a href="/admin/trainingPlans/user-plans" class="btn btn-outline-primary mx-2" id="trainPlan">My Training Plans</a>
             <a href="/event/userShowEvent" class="btn btn-outline-primary mx-2" id="seasonal">Seasonal Events</a>
+            <a href="/user/track" class="btn btn-outline-primary" id="Progress"> My Progress</a>
           </div>
       
           <!-- Right-aligned Profile Button -->
@@ -34,6 +37,7 @@
           </div>
         </div>
       </div>
+
       
     <% } else if(user && user.role === 'admin') { %>
 
