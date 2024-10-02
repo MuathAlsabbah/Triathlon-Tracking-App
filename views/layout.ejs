@@ -52,7 +52,11 @@
 
       
     <% } else if(user && user.role === 'admin') { %>
-
+      <nav class="nav">
+        <a href="/" class="logo-link">
+          <img src="/logo/Logoo.png" alt="" class="logo">
+        </a>
+      </br>
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
           <a href="/logout" class="btn btn-outline-primary">Logout</a>
@@ -76,7 +80,7 @@
       </div>
       
     <%  } else { %>
-      <a href="/auth/google" class="btn btn-outline-primary">Sign in</a>
+      <a href="/auth/google" class="btn btn-signIn">Sign in</a>
       <% } %>
   </nav>
 

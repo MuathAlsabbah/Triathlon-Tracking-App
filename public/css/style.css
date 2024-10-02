@@ -85,5 +85,11 @@ h1 {
     border-radius: 3%;
 }
 
+.btn-signIn {
+  position: absolute;
+  display:flex;
+  margin-right: 150vh;
+  margin-top: 42vh;
+}
 
 
