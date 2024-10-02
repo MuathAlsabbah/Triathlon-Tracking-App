@@ -13,9 +13,9 @@ const eventCtrl = require('../controllers/event')
 router.get('/add', ensureLoggedIn, eventCtrl.event_create_get)
 router.post('/add', ensureLoggedIn, eventCtrl.event_create_post)
 
-router.get('/index', eventCtrl.event_index_get)
-router.get('/detail', eventCtrl.event_show_get)
-router.get('/userShowEvent', eventCtrl.event_user_get)
+router.get('/index', ensureLoggedIn, eventCtrl.event_index_get)
+router.get('/detail', ensureLoggedIn, eventCtrl.event_show_get)
+router.get('/userShowEvent',  ensureLoggedIn,eventCtrl.event_user_get)
 
 
 router.get('/edit', ensureLoggedIn, eventCtrl.event_edit_get)

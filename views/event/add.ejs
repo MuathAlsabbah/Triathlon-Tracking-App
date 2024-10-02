@@ -1,70 +1,79 @@
-<h1>Add Event</h1>
-<!-- enctype="multipart/form-data" TO <Enable add file type> -->
-<form action="/event/add" method="post" enctype="multipart/form-data"> 
-  <div>
-    <label>Event Title</label>
-    <input type="text" name="event_name" class="form-control" required>
-  </div>
-  <br>
+<div class="container mt-5">
 
-  <div>
-    <label>location</label>
-    <input type="text" name="location" class="form-control" required>
-  </div>
-  <br>
+  <h1 class="text-center mb-4">Add Event</h1>
 
-  <div>
-    <label>Description</label>
-    <input type="text" name="description" class="form-control" required>
-  </div>
-  <br>
-<div class="row">
-  <div class="col">
-    <div>
-      <label>Max participants</label>
-      <input type="number" name="max_participants" class="form-control" required>
-    </div>
-  
+  <form action="/event/add" method="post" enctype="multipart/form-data">
+<div class="div">
 
-  </div>
-  <div class="col">
-    <div>
-      <label>Is Full</label>
-      <select name="isFull"  class="form-control">
-        <option value="false">false</option>
-        <option value="true">true</option>
-      </select>
-    </div>
-  
-  </div>
+
 </div>
+      <table class="w-100">
+          <tbody>
+              <tr>
+                  <td class="p-4" >
+                      <label for="event_name" class="form-label">Event Title</label>
+                      <input type="text" name="event_name" class="form-control" id="event_name" required>
+                  </td>
+              </tr>
 
-  <br>
-  <div>
-    <div class="row">
-      <div class="col">    
-        <label>Event Date</label>
+              <tr>
+                  <td class="p-4">
+                      <label for="location" class="form-label">Location</label>
+                      <input type="text" name="location" class="form-control" id="location" required>
+                  </td>
+              </tr>
 
-        <input type="date" name="event_date" class="form-control" required>
-      </div>
-      <div class="col">    
-        <label>Event Time</label>
+              <tr>
+                  <td class="p-4">
+                      <label for="description" class="form-label">Description</label>
+                      <input type="text" name="description" class="form-control" id="description" required>
+                  </td>
+              </tr>
 
-      <input type="text" name="time" class="form-control" placeholder="14:00 PM" required>
-      </div>
-      <div class="col">
-        <div>
-          <!-- accept="image/*" > make sure that file type is an image -->
-          <label>Event Image</label>
-          <input type="file" name="image" class="form-control"   accept="image/*" required> 
-        </div>
-      </div>
-      
+              <tr>
+                  <td class="p-4">
+                      <div class="row">
+                          <div class="col">
+                              <label for="max_participants" class="form-label">Max Participants</label>
+                              <input type="number" name="max_participants" class="form-control" id="max_participants" required>
+                          </div>
+                          <div class="col">
+                              <label for="isFull" class="form-label">Is Full</label>
+                              <select name="isFull" class="form-select" id="isFull">
+                                  <option value="false">False</option>
+                                  <option value="true">True</option>
+                              </select>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+              
+              <tr>
+                  <td class="p-4">
+                      <div class="row">
+                          <div class="col">
+                              <label for="event_date" class="form-label">Event Date</label>
+                              <input type="date" name="event_date" class="form-control" id="event_date" required>
+                          </div>
+                          <div class="col">
+                              <label for="time" class="form-label">Event Time</label>
+                              <input type="text" name="time" class="form-control" id="time" placeholder="14:00 PM" required>
+                          </div>
+                          <div class="col">
+                              <label for="image" class="form-label">Event Image</label>
+                              <input type="file" name="image" class="form-control" id="image" accept="image/*" required>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+              <tr>
+                  <td class="text-center">
+                      <button type="submit" class="btn btn-primary">Create Event</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
 
 
-    </div>
-  </div>  <br>
-
-
-  <button type="submit" class="btn btn-primary">Create Event</button>
-</form>
+  </form>
+</div>

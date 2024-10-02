@@ -53,6 +53,7 @@ h1 {
   justify-content: right;
 }
 
+
 .banner {
   background-image: url('../banner/Maan.png');
   background-size: cover;
@@ -64,3 +65,17 @@ h1 {
   left: 30px; 
   margin-top: 20px;
 }
+
+.card-home {
+  width: 275px;
+  height: 120px;
+  border: 1px solid #ccc;
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px; 
+}
+
