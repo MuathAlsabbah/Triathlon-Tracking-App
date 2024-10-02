@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Image</th>
       <th>Username</th>
       <th>Email</th>
       <th>Age</th>
@@ -16,7 +17,19 @@
   <tbody>
     <tr>
       <td>
-        <%= user.name %> <!-- Display username -->
+
+        <img src="/uploads/<%= user.profile_picture %>"
+                  style="
+                        height: 110px;
+                        width: 105px;
+                        margin-right: 20px;
+                        border-radius: 50%;
+                        border: 1px solid black;
+                        object-fit: cover;">
+      </td>
+      <td>
+          <%= user.username %> <!-- Assuming you want to display username here -->
+
       </td>
       <td><%= user.email %></td>
       <td><%= user.age %></td>
@@ -37,22 +50,3 @@
   </tbody>
 </table>
 
-<!-- Display current profile picture if available -->
-<h3>Current Profile Picture</h3>
-<% if (user.profile_picture) { %>
-  <img src="<%= user.profile_picture %>" alt="Profile Picture" width="150" height="150">
-<% } else { %>
-  <p>No profile picture available.</p>
-<% } %>
-
-<!-- Upload new profile picture -->
-<h3>Upload a New Profile Picture</h3>
-<form action="/user/index" method="POST" enctype="multipart/form-data">
-  <div class="form-group">
-    <label for="profile_picture">Choose a profile picture:</label>
-    <input type="file" name="profile_picture" class="form-control" accept="image/*" required>
-  </br>
-  
-  </div>
-  <button type="submit" class="btn btn-primary">Upload</button>
-</form>

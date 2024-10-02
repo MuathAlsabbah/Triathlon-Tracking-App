@@ -79,3 +79,11 @@ h1 {
   margin: 10px; 
 }
 
+.bg-container {
+  padding: 20px;
+    background-color: #e5e5e599;
+    border-radius: 3%;
+}
+
+
+
