@@ -11,8 +11,9 @@ dayjs.extend(relativeTime)
 //Delete - HTTP Delete
 
 const { User } = require('../models/User')
-const Tracking  = require('../models/Tracking')
+const Tracking = require('../models/Tracking')
 const TrainingPlan = require('../models/TrainingPlan')
+const Exercise = require('../models/Exercise') // Since you are populating 'exercise'
 
 // image file  dependincess
 const multer = require('multer');
@@ -52,21 +53,20 @@ exports.user_create_post = (req, res) => {
   user
     .save()
     .then(() => {
-      req.body.user.forEach(user => {
+      req.body.user.forEach((user) => {
         Author.findById(author)
-        .then((author => {
-          author.user.push(user)
-          author.save
-        }))
-        .catch((err) => {
-          console.log(err)
-        })
+          .then((author) => {
+            author.user.push(user)
+            author.save
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       })
-      res.redirect("/user/index")
+      res.redirect('/user/index')
     })
     .catch((err) => {
       console.log(err)
-      
     })
 
   // Embedded Design Model
@@ -140,7 +140,7 @@ exports.user_delete_get = (req, res) => {
   console.log(req.body.id)
   User.findByIdAndDelete(req.query.id)
     .then(() => {
-      res.redirect('/user/')
+      res.redirect('/layout')
     })
     .catch((err) => {
       console.log(err)
@@ -149,16 +149,48 @@ exports.user_delete_get = (req, res) => {
 
 // tracking user
 exports.user_Tracking_show_get = (req, res) => {
-  const userId = req.user._id; 
+  const userId = req.user._id
   Promise.all([
-    TrainingPlan.find(), 
-    Tracking.find({ user: userId }).populate('exercise') 
+    TrainingPlan.find(),
+    Tracking.find({ user: userId }).populate('exercise')
   ])
-  .then(([trainingPlan, tracking]) => {
-    res.render('user/track', { trainingPlan,tracking });
-  })
-  .catch(err => {
-    console.log(err)
-  });
-};
+    .then(([trainingPlan, tracking]) => {
+      // const chartDataRes = getUserProgress(req, res)
 
+      // Prepare the chartData from the tracking records
+      const chartData = tracking.map((track) => ({
+        date: new Date(track.date).toLocaleDateString(),
+        calories: track.calories_burned || 0
+      }))
+
+      console.log('Chart Data:', chartData)
+
+      res.render('user/track', { trainingPlan, tracking, chartData })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+const getUserProgress = (req, res) => {
+  const userId = req.user._id
+  // Find all tracking data for the user and populate exercises
+  Tracking.find({ user: userId })
+    .populate('exercise')
+    .then((tracking) => {
+      console.log('tracking', tracking)
+      // Prepare the chartData from the tracking records
+      const chartData = tracking.map((track) => ({
+        date: new Date(track.date).toLocaleDateString(),
+        calories: track.calories_burned || 0
+      }))
+
+      return chartData
+      // Render the 'track' view and pass both tracking and chartData
+      // res.render('track', { tracking, chartData })
+    })
+    .catch((err) => {
+      console.error('Error fetching user progress:', err)
+      res.status(500).send('Error retrieving progress')
+    })
+}
