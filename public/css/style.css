@@ -28,7 +28,6 @@ h1 {
 
 .logo-link {
   width: 7vw;
-
 }
 
 .noStyle:hover {
@@ -37,21 +36,19 @@ h1 {
 
 .button-container {
   display: flex;
-  justify-content: space-between; 
-  align-items: flex-start; 
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 #profile {
   display: flex;
   justify-content: flex-end;
-  
 }
 
 .footer {
   display: flex;
   justify-content: right;
 }
-
 
 .banner {
   background-image: url('../banner/Maan.png');
@@ -61,7 +58,7 @@ h1 {
   width: calc(100% - 60px);
   height: 500px;
   position: relative;
-  left: 30px; 
+  left: 30px;
   margin-top: 20px;
 }
 
@@ -69,20 +66,21 @@ h1 {
   width: 275px;
   height: 120px;
   border: 1px solid #ccc;
-  border-radius: 8px; 
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10px; 
+  margin: 10px;
 }
 
 .bg-container {
   padding: 20px;
-    background-color: #e5e5e599;
-    border-radius: 3%;
+  background-color: #e5e5e599;
+  border-radius: 3%;
 }
+
 
 .btn-signIn {
   position: absolute;
@@ -92,6 +90,7 @@ h1 {
   border: 5px solid rgb(43, 112, 172);
   font-size: 3vh;
 }
+
 
 
 
