@@ -1,7 +1,9 @@
 body {
   height: 100vh;
   font-family: Protest Guerrilla;
+
   background-color: rgb(19, 20, 21);
+
 }
 
 h1 {
@@ -86,13 +88,5 @@ h1 {
     border-radius: 3%;
 }
 
-.btn-signIn {
-  position: absolute;
-  display:flex;
-  margin-right: 150vh;
-  margin-top: 42vh;
-  border: 5px solid rgb(43, 112, 172);
-  font-size: 3vh;
-}
 
 
