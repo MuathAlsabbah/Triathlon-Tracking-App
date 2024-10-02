@@ -1,27 +1,29 @@
-<% if (plan) { %>
-  <h1><%= plan.title %></h1>
-  <p><%= plan.description %></p>
-  <p>Assigned to: <%= plan.user ? plan.user.name : 'No user assigned' %></p>
+<div class="container mt-4">
+  <% if (plan) { %>
+      <h1 class="display-4"><%= plan.title %></h1>
+      <p class="lead"><%= plan.description %></p>
+      <p>Assigned to: <strong><%= plan.user ? plan.user.name : 'No user assigned' %></strong></p>
 
-  <h2>Exercises</h2>
-  <ul>
-    <% plan.exercises.forEach(exercise => { %>
-      <li>
-        <%= exercise.name %>
-        
-        <% const exerciseProgress = progressLogs.find(log => log.exercise._id.toString() === exercise._id.toString()); %>
-        <% if (exerciseProgress) { %>
-          <p><strong>Progress:</strong></p>
-          <p>Status: <%= exerciseProgress.status %></p>
-          <p>Notes: <%= exerciseProgress.notes %></p>
-          <p>Duration: <%= exerciseProgress.duration %> minutes</p>
-          <p>Calories Burned: <%= exerciseProgress.calories_burned %> kcal</p>
-        <% } else { %>
-          <p>No progress logged yet.</p>
-        <% } %>
-      </li>
-    <% }) %>
-  </ul>
-<% } else { %>
-  <p>No plan found</p>
-<% } %>
+      <h2>Exercises</h2>
+      <ul class="list-group">
+          <% plan.exercises.forEach(exercise => { %>
+              <li class="list-group-item">
+                  <strong><%= exercise.name %> Progress:</strong> <br>
+                  <% const exerciseProgress = progressLogs.find(log => log.exercise._id.toString() === exercise._id.toString()); %>
+                  <% if (exerciseProgress) { %>
+                      <div>
+                          <p>Status: <%= exerciseProgress.status %></p>
+                          <p>Notes: <%= exerciseProgress.notes %></p>
+                          <p>Duration: <%= exerciseProgress.duration %> minutes</p>
+                          <p>Calories Burned: <%= exerciseProgress.calories_burned %> kcal</p>
+                      </div>
+                  <% } else { %>
+                      <p>No progress logged yet.</p>
+                  <% } %>
+              </li>
+          <% }) %>
+      </ul>
+  <% } else { %>
+      <p class="text-danger">No plan found</p>
+  <% } %>
+</div>
