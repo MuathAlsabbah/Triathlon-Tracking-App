@@ -13,8 +13,8 @@ const userCtrl = require('../controllers/user')
 router.get('/add', ensuredLoggedIn, userCtrl.user_create_get)
 router.post('/add', ensuredLoggedIn, userCtrl.user_create_post)
 
-router.get('/index', userCtrl.user_index_get)
-router.get('/detail', userCtrl.user_show_get)
+router.get('/index', ensuredLoggedIn,userCtrl.user_index_get)
+router.get('/detail', ensuredLoggedIn,userCtrl.user_show_get)
 
 router.get('/delete', ensuredLoggedIn, userCtrl.user_delete_get)
 router.get('/edit', ensuredLoggedIn, userCtrl.user_edit_get)
