@@ -5,11 +5,34 @@ const Tracking = require('../models/Tracking')
 
 // Admin: Show all training plans
 exports.getAllTrainingPlans = (req, res) => {
-  TrainingPlan.find()
-    .populate('exercises')
-    .populate('user')
-    .then((plans) => res.render('admin/trainingPlans/index', { plans }))
-    .catch((err) => res.send(err))
+  const { userId } = req.query // Get userId from query parameters
+
+  // Fetch all users to populate the filter dropdown
+  User.find({ role: 'user' })
+    .then((users) => {
+      // Define the query object
+      let query = {}
+      if (userId && userId !== 'all') {
+        query.user = userId
+      }
+
+      // Find training plans with the query
+      return TrainingPlan.find(query)
+        .populate('exercises')
+        .populate('user')
+        .then((plans) => ({ users, plans }))
+    })
+    .then(({ users, plans }) => {
+      res.render('admin/trainingPlans/index', {
+        plans,
+        users,
+        selectedUser: req.query.userId || 'all'
+      })
+    })
+    .catch((err) => {
+      console.error('Error fetching training plans:', err)
+      res.send('Error fetching training plans')
+    })
 }
 
 // Admin: Show form to create a new training plan
@@ -89,7 +112,7 @@ exports.getTrainingPlanDetail = (req, res) => {
     .populate('exercises user')
     .then((plan) => {
       if (!plan) {
-        return res.status(404).send('Plan not found')
+        return res.send('Plan not found')
       }
 
       // Fetch the progress logs for this user and plan
@@ -98,9 +121,9 @@ exports.getTrainingPlanDetail = (req, res) => {
         .then((progressLogs) => {
           res.render('admin/trainingPlans/detail', { plan, progressLogs })
         })
-        .catch((err) => res.status(500).send('Error retrieving progress logs'))
+        .catch((err) => res.send('Error retrieving progress logs'))
     })
-    .catch((err) => res.status(500).send('Error retrieving training plan'))
+    .catch((err) => res.send('Error retrieving training plan'))
 }
 
 // Admin: Delete a training plan
@@ -109,7 +132,7 @@ exports.deleteTrainingPlan = (req, res) => {
 
   TrainingPlan.findByIdAndDelete(planId)
     .then(() => res.redirect('/admin/trainingPlans'))
-    .catch((err) => res.status(500).send('Error deleting training plan'))
+    .catch((err) => res.send('Error deleting training plan'))
 }
 
 // Admin: Show details of a training plan
@@ -129,7 +152,7 @@ exports.getUserTrainingPlans = (req, res) => {
         res.render('admin/trainingPlans/user-plans', { plans, progressLogs })
       })
     })
-    .catch((err) => res.status(500).send('Error retrieving training plans'))
+    .catch((err) => res.send('Error retrieving training plans'))
 }
 
 // Controller to show the log progress form
@@ -146,7 +169,7 @@ exports.showLogProgressForm = (req, res) => {
     })
     .catch((err) => {
       console.error('Error fetching exercise:', err)
-      res.status(500).send('Error fetching exercise')
+      res.send('Error fetching exercise')
     })
 }
 
@@ -164,7 +187,7 @@ exports.logProgress = (req, res) => {
   TrainingPlan.findOne({ exercises: exerciseId })
     .then((plan) => {
       if (!plan) {
-        return res.status(404).send('Training Plan not found.')
+        return res.send('Training Plan not found.')
       }
 
       // Create a new progress log
@@ -185,7 +208,7 @@ exports.logProgress = (req, res) => {
     })
     .catch((err) => {
       console.error('Error logging progress:', err)
-      res.status(500).send('Error logging progress.')
+      res.send('Error logging progress.')
     })
 }
 
@@ -206,7 +229,7 @@ exports.showEditProgressForm = (req, res) => {
     })
     .catch((err) => {
       console.error('Error fetching progress log:', err)
-      res.status(500).send('Error fetching progress log.')
+      res.send('Error fetching progress log.')
     })
 }
 
@@ -226,7 +249,7 @@ exports.editProgress = (req, res) => {
     })
     .catch((err) => {
       console.error('Error updating progress log:', err)
-      res.status(500).send('Error updating progress log.')
+      res.send('Error updating progress log.')
     })
 }
 
@@ -240,6 +263,6 @@ exports.deleteProgress = (req, res) => {
     })
     .catch((err) => {
       console.error('Error deleting progress log:', err)
-      res.status(500).send('Error deleting progress log.')
+      res.send('Error deleting progress log.')
     })
 }

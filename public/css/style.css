@@ -10,6 +10,7 @@ h1 {
 
 .noStyle {
   color: rgb(238, 123, 0);
+  margin: 20px;
 }
 
 .noStyle:hover {
@@ -18,23 +19,19 @@ h1 {
 
 .button-container {
   display: flex;
-  justify-content: space-between; /* This will push buttons to the sides */
-  align-items: center; /* Aligns buttons vertically in the center */
+  justify-content: space-between; 
+  align-items: flex-start; 
 }
 
-.left {
+#profile {
   display: flex;
+  justify-content: flex-end;
   
 }
 
-.right {
+.footer {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px; 
-}
-
-.welcome {
-
+  justify-content: right;
 }
 
 .card-home {
