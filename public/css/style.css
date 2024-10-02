@@ -33,3 +33,14 @@ h1 {
   display: flex;
   justify-content: right;
 }
+
+.banner {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  width: calc(100% - 60px);
+  height: 500px;
+  position: relative;
+  left: 30px; 
+  margin-top: 20px;
+}
