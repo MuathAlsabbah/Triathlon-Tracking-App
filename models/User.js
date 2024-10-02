@@ -14,7 +14,7 @@ const userSchema = mongoose.Schema(
       type: String,
       default: null
     },
-    profile_picture: String,
+    profile_picture:{type :String, default:'null'},
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
     event: [
       {

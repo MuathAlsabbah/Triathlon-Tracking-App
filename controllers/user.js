@@ -14,6 +14,25 @@ const { User } = require('../models/User')
 const Tracking  = require('../models/Tracking')
 const TrainingPlan = require('../models/TrainingPlan')
 
+// image file  dependincess
+const multer = require('multer');
+const path = require('path'); // Add this line to import the path module
+
+// Set up multer storage (as shown previously)
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'public/uploads/'); // Directory to store uploaded files
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+  }
+});
+
+// Initialize multer
+const upload = multer({ storage: storage }).single('profile_picture'); // Expecting a single file upload with field name 'image'
+
+// --------------
+
 exports.user_create_get = (req, res) => {
   User.find()
     .then((users) => {
@@ -95,6 +114,16 @@ exports.user_edit_get = (req, res) => {
 }
 
 exports.user_update_post = (req, res) => {
+  // Handle file upload
+  upload(req, res, (err) => {
+    if (err) {
+      console.log("File upload error:", err);
+      return res.send('Error uploading file');
+    }
+
+    // Add the image path to req.body
+    req.body.profile_picture = req.file ? req.file.filename : null;
+
   console.log(req.body.id)
   User.findByIdAndUpdate(req.body.id, req.body)
     .then(() => {
@@ -103,6 +132,7 @@ exports.user_update_post = (req, res) => {
     .catch((err) => {
       console.log(err)
     })
+  });
 }
 
 exports.user_delete_get = (req, res) => {

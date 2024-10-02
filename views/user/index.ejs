@@ -3,6 +3,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Image</th>
       <th>Username</th>
       <th>Email</th>
       <th>Age</th>
@@ -17,8 +18,17 @@
   <tbody>
     <tr>
       <td>
+        <img src="/uploads/<%= user.profile_picture %>"
+                  style="
+                        height: 110px;
+                        width: 105px;
+                        margin-right: 20px;
+                        border-radius: 50%;
+                        border: 1px solid black;
+                        object-fit: cover;">
+      </td>
+      <td>
           <%= user.username %> <!-- Assuming you want to display username here -->
-        </a>
       </td>
       <td><%= user.email %></td>
       <td><%= user.age %></td>
