@@ -22,9 +22,11 @@ Project 2 for General Assembly bootcamp, Develop a full-stack web application th
 
 ### **_Technologies Used_**
 
-- Javascript
+- NodeJs
 - Html
 - Css
+- Mongoose
+- ExpressJs
 
 ---
 
@@ -52,8 +54,6 @@ Project 2 for General Assembly bootcamp, Develop a full-stack web application th
 
 ### **_Future Updates_**
 
-- [ ] Multiplayer Mode
-- [ ] Daily Challenges
-- [ ] Save and Resume Game Progress
+- [ ]
 
 ---
