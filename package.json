@@ -10,6 +10,7 @@
   "author": "Muath Hussain Noor",
   "license": "ISC",
   "dependencies": {
+    "chart.js": "^4.4.4",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
