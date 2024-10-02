@@ -10,12 +10,16 @@
 </head>
 <body>
   <br />
-  <a href="/" class="noStyle">
-    <h1>Triathlon-Tracking App</h1>
-  </a>
-  <nav>
+
+</br>
+  
     <% if(user && user.role === 'user') { %>
 
+      <nav class="nav">
+      <a href="/" class="logo-link">
+        <img src="/logo/Logoo.png" alt="" class="logo">
+      </a>
+    </br>
 
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
@@ -41,15 +45,27 @@
       
     <% } else if(user && user.role === 'admin') { %>
 
-      <div class="display"><a href="/logout" class="btn btn-outline-primary">Logout</a>
-      <a href="/admin/exercise/index" class="btn 
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <a href="/logout" class="btn btn-outline-primary">Logout</a>
+        
+
+        <div class="d-flex justify-content-center">
+          <a href="/admin/exercise/index" class="btn 
       btn-outline-primary">Exercises</a>
       <a href="/admin/exercise/add" class="btn btn-outline-primary">Add Exercise</a>
       <a href="/admin/trainingPlans" class="btn btn-outline-primary">Training Plans</a>
       <a href="/admin/trainingPlans/add" class="btn btn-outline-primary">Add Training Plan</a>
       <a href="/event/add" class="btn btn-outline-primary">Add Event</a>
       <a href="/event/index" class="btn btn-outline-primary"> Events</a>
-      <a href="/user" class="btn btn-outline-primary" id="profile">Profile</a></div>
+        </div>
+
+        <div>
+          <a href="/user/index" class="btn btn-outline-primary" id="profile">Profile</a>
+        </div>
+        </div>
+
+      </div>
       
     <%  } else { %>
       <a href="/auth/google" class="btn btn-outline-primary">Sign in</a>
