@@ -10,11 +10,15 @@
 </head>
 <body>
   <br />
-  <a href="/" class="noStyle">
-    <h1>Triathlon-Tracking App</h1>
-  </a>
-  <nav>
+
+</br>
+  
     <% if(user && user.role === 'user') { %>
+      <nav class="nav">
+      <a href="/" class="logo-link">
+        <img src="/logo/Logoo.png" alt="" class="logo">
+      </a>
+    </br>
       <div class="container">
         <div class="d-flex justify-content-between align-items-center">
           <!-- Left-aligned Logout Button -->

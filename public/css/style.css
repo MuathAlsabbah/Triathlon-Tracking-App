@@ -1,17 +1,36 @@
 body {
-  margin: 30px;
   height: 100vh;
   font-family: Protest Guerrilla;
 }
 
 h1 {
   text-align: center;
+  color: rgb(238, 123, 0);
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-.noStyle {
+.logo {
   color: rgb(238, 123, 0);
-  margin: 20px;
+  width: 7vw;
+  object-fit: cover;
 }
+
+.nav {
+  text-align: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-link {
+  width: 7vw;
+
+}
+
+
 
 .noStyle:hover {
   color: rgb(219, 109, 30);
@@ -35,7 +54,7 @@ h1 {
 }
 
 .banner {
-  background-image: url('../banner/Screenshot\ 2024-10-02\ at\ 11.23.25\ AM.png');
+  background-image: url('../banner/Maan.png');
   background-size: cover;
   display: flex;
   justify-content: center;
