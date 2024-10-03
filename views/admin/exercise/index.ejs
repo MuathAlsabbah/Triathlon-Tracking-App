@@ -1,40 +1,42 @@
-<h1>Exercises</h1>
 
-<table class="table table-striped font">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>difficulty Level</th>
-    <th>Duration</th>
-    <th>Created At</th>
-    <th>Updated At</th>
-    <th>Actions</th>
-
-  </tr>
-  <% exercise.forEach(function(exercise){ %>
+<div class="container">
+  <h1>Exercises</h1>
+  <table class="table table-striped font">
     <tr>
-      <td>
-        <a href="/admin/exercise/detail?id=<%=exercise._id %>">
-          <%= exercise.name %>
-        </a>
-      </td>
-      <td><%= exercise.description %></td>
-      <td><%= exercise.difficulty_level %></td>
-      <td><%= exercise.duration%></td>
-      <td> <%= dayjs(exercise.createdAt).fromNow(true) %> ago</td>
-      <td> <%= dayjs(exercise.updatedAt).fromNow(true) %> ago</td>
-
-      <td>
-        <a href="/admin/exercise/edit?id=<%= exercise._id %>">
-          <i class="fas fa-edit edit"></i></a>
-        <a href="/admin/exercise/delete?id=<%= exercise._id %>" 
-          style="margin-left: 5px; color: red;" >
-          <i class="fa-solid fa-trash color" ></i>
-        </a>
-
-      </td>
-
+      <th>Name</th>
+      <th>Description</th>
+      <th>difficulty Level</th>
+      <th>Duration (minutes)</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Actions</th>
+  
     </tr>
-  <% }) %>
-
-</table>
+    <% exercise.forEach(function(exercise){ %>
+      <tr>
+        <td>
+          <a href="/admin/exercise/detail?id=<%=exercise._id %>">
+            <%= exercise.name %>
+          </a>
+        </td>
+        <td><%= exercise.description %></td>
+        <td><%= exercise.difficulty_level %></td>
+        <td><%= exercise.duration%></td>
+        <td> <%= dayjs(exercise.createdAt).fromNow(true) %> ago</td>
+        <td> <%= dayjs(exercise.updatedAt).fromNow(true) %> ago</td>
+  
+        <td>
+          <a href="/admin/exercise/edit?id=<%= exercise._id %>">
+            <i class="fas fa-edit edit"></i></a>
+          <a href="/admin/exercise/delete?id=<%= exercise._id %>" 
+            style="margin-left: 5px; color: red;" >
+            <i class="fa-solid fa-trash color" ></i>
+          </a>
+  
+        </td>
+  
+      </tr>
+    <% }) %>
+  
+  </table>
+</div>

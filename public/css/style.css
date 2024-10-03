@@ -1,6 +1,7 @@
 body {
   height: 100vh;
-  font-family: Protest Guerrilla;
+  font-family: webkit-body;
+  font-size: 3vh;
 
 }
 
@@ -38,11 +39,15 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  
 }
+
+
 
 #profile {
   display: flex;
   justify-content: flex-end;
+  font-size: 3vh;
 }
 
 .footer {
@@ -73,6 +78,7 @@ h1 {
   justify-content: center;
   align-items: center;
   margin: 10px;
+
 }
 
 .bg-container {
@@ -91,6 +97,20 @@ h1 {
   font-size: 3vh;
 }
 
+.welcome {
+  font-size: 8vh;
+}
 
+.btn-outline-primary {
+  font-size: 3vh;
+}
+
+.command {
+  font-size: 6vh;
+}
+
+.form-check-input {
+  text-align: center;
+}
 
 

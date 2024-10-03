@@ -1,10 +1,12 @@
 <% if(user && (user.role === 'user' || user.role === 'admin' ) ) { %>
-  <h1>Welcome <%= user.name %></h1>
+
+    <h1 class="welcome">Welcome <%= user.name %></h1>
+
   <div class="banner"></div>
 </div>
   
 <% } else { %> 
-  <h1>Sign in now to unlock your personalized triathlon journey and track your progress like never before!</h1> 
+  <h1 class="command">Sign in now to unlock your personalized triathlon journey and track your progress like never before!</h1> 
   <div class="banner">
     <a href="/auth/google" class="btn btn-signIn">Sign in</a>
   </div>

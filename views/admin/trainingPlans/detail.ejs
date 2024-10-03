@@ -1,27 +1,30 @@
-<% if (plan) { %>
-  <h1><%= plan.title %></h1>
-  <p><%= plan.description %></p>
-  <p>Assigned to: <%= plan.user ? plan.user.name : 'No user assigned' %></p>
-
-  <h2>Exercises</h2>
-  <ul>
-    <% plan.exercises.forEach(exercise => { %>
-      <li>
-        <%= exercise.name %>
-        
-        <% const exerciseProgress = progressLogs.find(log => log.exercise._id.toString() === exercise._id.toString()); %>
-        <% if (exerciseProgress) { %>
-          <p><strong>Progress:</strong></p>
-          <p>Status: <%= exerciseProgress.status %></p>
-          <p>Notes: <%= exerciseProgress.notes %></p>
-          <p>Duration: <%= exerciseProgress.duration %> minutes</p>
-          <p>Calories Burned: <%= exerciseProgress.calories_burned %> kcal</p>
-        <% } else { %>
-          <p>No progress logged yet.</p>
-        <% } %>
-      </li>
-    <% }) %>
-  </ul>
-<% } else { %>
-  <p>No plan found</p>
-<% } %>
+<div class="container">
+  <% if (plan) { %>
+    <h1><%= plan.title %></h1>
+    <p><%= plan.description %></p>
+    <p>Assigned to: <%= plan.user ? plan.user.name : 'No user assigned' %></p>
+  
+    <h2>Exercises</h2>
+    <ul>
+      <% plan.exercises.forEach(exercise => { %>
+        <li>
+          <%= exercise.name %>
+          
+          <% const exerciseProgress = progressLogs.find(log => log.exercise._id.toString() === exercise._id.toString()); %>
+          <% if (exerciseProgress) { %>
+            <p><strong>Progress:</strong></p>
+            <p>Status: <%= exerciseProgress.status %></p>
+            <p>Notes: <%= exerciseProgress.notes %></p>
+            <p>Duration: <%= exerciseProgress.duration %> minutes</p>
+            <p>Calories Burned: <%= exerciseProgress.calories_burned %> kcal</p>
+          <% } else { %>
+            <p>No progress logged yet.</p>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No plan found</p>
+  <% } %>
+  
+</div>
