@@ -1,25 +1,39 @@
 <div class="container">
+  <div class="container">
   <h1>All Training Plans</h1>
 <form method="GET" action="/admin/trainingPlans" class="form-inline mb-4">
-  <label class="mr-2">Filter by User:</label>
+  <label class="mr-2" >Filter by User:</label>
   <select name="userId" id="userFilter" class="form-control mr-2">
-    <option value="all" <%= selectedUser === 'all' ? 'selected' : '' %>>All Users</option>
+    <option value="all" class="form-control" <%= selectedUser === 'all' ? 'selected' : '' %>>All Users</option>
     <% users.forEach(user => { %>
       <option value="<%= user._id %>" <%= selectedUser === user._id.toString() ? 'selected' : '' %>><%= user.name %></option>
     <% }) %>
   </select>
+<br>
+
   <button type="submit" class="btn btn-primary">Filter</button>
 </form>
-<ul>
-  <% plans.forEach(plan => { %>
-    <li>
-      <strong><%= plan.title %></strong> - <%= plan.user.name %> 
-      <a href="/admin/trainingPlans/detail/<%= plan._id %>">View Details</a>
-      <a href="/admin/trainingPlans/edit/<%= plan._id %>">Edit</a>
-      <form action="/admin/trainingPlans/delete/<%= plan._id %>" method="POST" style="display:inline;">
-        <button type="submit">Delete</button>
-      </form>
-    </li>
-  <% }) %>
-</ul>
-</div>
+<table class="table table-striped font">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>User</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% plans.forEach(plan => { %>
+    <tr>
+      <td><strong><%= plan.title %></strong></td>
+      <td><%= plan.user.name %></td>
+      <td>
+        <a href="/admin/trainingPlans/detail/<%= plan._id %>">View Details</a> 
+        <a href="/admin/trainingPlans/edit/<%= plan._id %>" style="margin-left: 10px;"> <i class="fas fa-edit edit"></i></a> 
+        <form action="/admin/trainingPlans/delete/<%= plan._id %>" method="POST" style="display:inline;">
+          <button type="submit" style="border:none; background-color: transparent;"> <i class="fa-solid fa-trash color" style="margin-left: 15px; color: red; "></i></button>
+        </form>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
