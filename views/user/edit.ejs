@@ -1,5 +1,5 @@
 <h1> Edit Profile </h1>
-
+<div class="container">
 <form method="POST" action="/user/update" enctype="multipart/form-data">
   
 <div class="">
@@ -43,6 +43,10 @@
 
   <input type="hidden" name="id" value="<%= user._id %>"  class="form-control"/>
 
-  <button type="submit">Update Profile</button>
+  <br>
+
+  <button type="submit" class="btn btn-primary">Update Profile</button>
 
 </form>
+
+</div>

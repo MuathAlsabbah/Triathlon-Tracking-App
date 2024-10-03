@@ -1,15 +1,19 @@
 <h1>Edit Progress for <%= exercise.name %></h1>
 
+<div class="container">
 <form action="/admin/trainingPlans/edit-progress/<%= progress._id %>" method="POST">
   <label for="notes">Notes:</label>
-  <textarea name="notes" placeholder="Any additional notes"><%= progress.notes %></textarea>
+  <textarea name="notes" placeholder="Any additional notes" class="form-control"><%= progress.notes %></textarea>
 
   <label for="duration">Duration (minutes):</label>
-  <input type="number" name="duration" min="0" value="<%= progress.duration %>" required>
+  <input type="number" name="duration" min="0" class="form-control" value="<%= progress.duration %>" required>
 
   <label for="calories_burned">Calories Burned:</label>
-  <input type="number" name="calories_burned" min="0" value="<%= progress.calories_burned %>" required>
+  <input type="number" name="calories_burned" min="0" class="form-control" value="<%= progress.calories_burned %>" required>
 
+  <br>
+  
   <button type="submit" class="btn btn-primary">Update Progress</button>
 </form>
 
+</div>
