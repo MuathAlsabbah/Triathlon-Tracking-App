@@ -8,11 +8,14 @@
     <% tracking.forEach(track => { total_calories_burned += track.calories_burned; }); %>
   
     <div class="d-flex justify-content-evenly mb-5">
-      <div class="card-home" style="background-color: rgb(167, 143, 224);">
-        <p>Total Calories Burned: <%= total_calories_burned %></p>
+      <div class="card-home" style="background-color: rgb(245, 221, 101);">
+        <p class="text-center">Total Calories Burned: </br> <%= total_calories_burned %></p>
       </div>
-      <div class="card-home" style="background-color: rgb(14, 214, 198);">
-        <p>Total number of completed exercises: <%= tracking.length %></p>
+      <div class="card-home" style="background-color: rgb(245, 221, 101);">
+        <p class="text-center">Total number of completed exercises: </br> <strong>
+          <%= tracking.length %>
+        </strong>
+      </p>
       </div>
     </div>
 
@@ -40,8 +43,8 @@
                 datasets: [{
                   label: 'Calories Burned Per Day',
                   data: caloriesData,
-                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                  borderColor: 'rgba(75, 192, 192, 1)',
+                  backgroundColor: 'rgba(43, 112, 172, 0.5)',
+                  borderColor: 'rgba(255, 255, 255, 1)',
                   borderWidth: 1,
                   fill: true,
                   tension: 0.3 // Curved line

@@ -31,8 +31,6 @@ h1 {
 
 }
 
-
-
 .noStyle:hover {
   color: rgb(219, 109, 30);
 }
@@ -84,6 +82,15 @@ h1 {
   padding: 20px;
     background-color: #e5e5e599;
     border-radius: 3%;
+}
+
+.btn-signIn {
+  position: absolute;
+  display: flex;
+  margin-right: 150vh;
+  margin-top: 42vh;
+  border: 5px solid rgb(43, 112, 172);
+  font-size: 3vh;
 }
 
 

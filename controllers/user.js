@@ -140,7 +140,7 @@ exports.user_delete_get = (req, res) => {
   console.log(req.body.id)
   User.findByIdAndDelete(req.query.id)
     .then(() => {
-      res.redirect('/layout')
+      res.redirect('/')
     })
     .catch((err) => {
       console.log(err)
