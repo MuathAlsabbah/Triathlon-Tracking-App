@@ -1,7 +1,8 @@
 body {
   height: 100vh;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 3vh;
+  background-color: rgb(24, 26, 27);
 }
 
 h1 {
@@ -9,6 +10,7 @@ h1 {
   color: rgb(43, 112, 172);
   margin-top: 40px;
   margin-bottom: 40px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .logo {
@@ -49,6 +51,8 @@ h1 {
 .footer {
   display: flex;
   justify-content: right;
+  color: white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .banner {
@@ -89,14 +93,36 @@ h1 {
   margin-top: 42vh;
   border: 5px solid rgb(43, 112, 172);
   font-size: 3vh;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .welcome {
   font-size: 8vh;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .btn-outline-primary {
   font-size: 3vh;
+}
+
+.btn-primary {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.btn-danger {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.btn-secondary {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.btn-warning {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.text-center {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .command {
@@ -113,4 +139,43 @@ a {
 
 .nav .btn {
   margin: 0 8px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+table {
+  color: white;
+}
+
+label {
+  color: white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+legend {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.form-check-label {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+th {
+  color: white;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+td {
+  color: white;
+}
+
+.font-color {
+  color: white;
+}
+
+.white-font {
+  color: white;
+}
+
+.mt-5 {
+  color: white;
 }
