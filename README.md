@@ -39,8 +39,19 @@ Project 2 for General Assembly bootcamp, Develop a full-stack web application th
 - ExpressJs
 - EJS
 - Javascript
+- Font-awesome
+- Bootstrap
 
 ---
+### **_Application Users_**
+
+- user
+- admin
+
+---
+
+
+
 
 ---
 
